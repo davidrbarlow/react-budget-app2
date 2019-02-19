@@ -14,7 +14,7 @@ class SignupPage extends React.Component {
             pwMatchPass: false,
             emValidPass: true
         };
-        
+
         this.onPasswordChange = this.onPasswordChange.bind(this);       
     };
 
@@ -79,25 +79,24 @@ class SignupPage extends React.Component {
     onPassword2Change = (e) => {
         const password2 = e.target.value;
         this.setState(()=>({password2}));
-        console.log(password2);
         let password = this.state.password;
         this.checkPasswordMatch(password, password2);
     }
 
-    handleSubmit = (e) => {
+    handleSubmit =  (e) => {
         e.preventDefault();
         let { email, password, error } = this.state;
         console.log('email/pw',email,password, error, this.state);
         console.log('this.state. in handleSubmit',this.state);
         this.checkEmailPwPass().then((r)=>{
            // this.setState({error: ''});
-            console.log(r);
-        const res =  this.props.signup(email, password)
+            console.log('email passed',r);
+        this.props.signup(email, password)
         .catch((res)=>{
-            res ? this.setState({error: 'Email already registered'}) : console.log("search failed");
-        });
-            
+            console.log('email already in use');
+            res ? this.setState({error: 'Email already registered'}) : console.log("search failed");      
         }).catch((e)=>{console.log('no match')});
+      })
     };
 
 

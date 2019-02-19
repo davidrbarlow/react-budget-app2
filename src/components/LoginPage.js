@@ -11,6 +11,8 @@ class LoginPage extends React.Component {
         this.state = {};
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.autoComplete = 'yes';
+        this.errorMessage = 'Username or Password is incorrect!'
 
     };
 
@@ -29,7 +31,6 @@ class LoginPage extends React.Component {
         e.preventDefault();
         let { email, password } = this.state;
         this.props.login(email, password);
-        console.log('set state',this.state);
         this.setState({
         email: '',
         password: ''
@@ -45,7 +46,7 @@ render(){
     <div>  
         <h1>Budget</h1>
         <p>It's time to get your expenses under control.</p>
-        <form onSubmit={this.handleSubmit} id="login-form">
+        <form onSubmit={this.handleSubmit} id="login-form" autoComplete={this.autoComplete}>
         <input
         type="text"
         name="email"
@@ -69,11 +70,10 @@ render(){
         <div>
         { isLoginPending && <div>Please wait...</div> }
         { isLoginSuccess && <div>Success.</div> }
-        { loginError && <div>{loginError.message}</div> }
+        { loginError && <div>{this.errorMessage}</div> }
       </div>
         </form>
         <Link to="/signup">Signup</Link>
-
     </div>
         );
     };
