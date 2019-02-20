@@ -14,13 +14,8 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
     switch (action.type) {
-    //   case SET_LOGIN_PENDING:
-    //     return Object.assign({}, state, {
-    //       isLoginPending: action.isLoginPending
-    //     });
     
     case SET_LOGIN_PENDING:
-    console.log('set pending reducer',state);
         return {
          ...state,
          isLoginPending: action.isLoginPending
@@ -37,7 +32,6 @@ export default function reducer(state = defaultState, action) {
         loginError: action.loginError
        };
     case SET_AUTH_TOKEN:
-    console.log('set auth token',state);
        return {
            ...state,
            authToken: action.authToken

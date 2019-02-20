@@ -42,11 +42,12 @@ export function signup(email,password){
     dispatch(setLoginError(null));
 
     const callSignupApi2 = async (email, password) => {
-      console.log('in try block2');
       const res = await callSignupApi(email, password);
-
+      
       try{
-        if (res.request.status===200)
+        //if (res.request.status===200)
+        if (res.status===200)
+       
         {
           await dispatch(setLoginSuccess(true));
           await  dispatch(setAuthToken(res.headers['x-auth']));
@@ -60,8 +61,7 @@ export function signup(email,password){
         dispatch(setLoginPending(false));
         dispatch(setLoginSuccess(false));
         dispatch(setLoginError(true)); 
-  
-      return Promise.reject(res.data.errmsg.search("duplicate key"));
+        return Promise.reject(res.data.errmsg.search("duplicate key"));
       };
     };
     return callSignupApi2(email, password);    
@@ -69,7 +69,6 @@ export function signup(email,password){
 };
 
 const callSignupApi = (email, password) =>{
-  console.log('axios');
   return axios.post('http://localhost:3000/user/',{
     email,
     password
@@ -82,7 +81,6 @@ const callSignupApi = (email, password) =>{
 
 
 function setLoginPending(bool) {
-  console.log('login is pending');
   return {
     type: SET_LOGIN_PENDING,
     isLoginPending : bool,
@@ -90,7 +88,6 @@ function setLoginPending(bool) {
 }
 
 function setLoginSuccess(isLoginSuccess) {
-  console.log('login status success');
   return {
     type: SET_LOGIN_SUCCESS,
     isLoginSuccess,
@@ -98,7 +95,6 @@ function setLoginSuccess(isLoginSuccess) {
 }
 
 function setLoginError(loginError) {
- //   console.log('login status error');
   return {
     type: SET_LOGIN_ERROR,
     loginError,
@@ -106,7 +102,6 @@ function setLoginError(loginError) {
 };
 
 export const setAuthToken = (authToken) => {
-  //  console.log('setting token',authToken);
   return {
     type: SET_AUTH_TOKEN,
     authToken,
@@ -114,17 +109,13 @@ export const setAuthToken = (authToken) => {
 };
 
 const callLoginApi = (email, password) =>{
- //   console.log('axios');
   return axios.post('http://localhost:3000/user/login',{
     email,
     password
   }).then((res)=>{
-    // console.log('res login api',res);
     return(res);
   }).catch((e)=>{
-    // console.log('callLoginAPi',e);
     return(e);
-    //throw(e);
   });
 };
 

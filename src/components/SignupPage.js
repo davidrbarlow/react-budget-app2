@@ -45,8 +45,6 @@ class SignupPage extends React.Component {
       }
 
     checkPasswordMatch= (password, password2) => {
-          console.log('match ',password);
-          console.log('match ',password2);
         (password2 === password) ? this.setState({pwMatchColor: 'green', pwMatchPass: true}) 
         : this.setState({pwMatchColor: 'red', pwMatchPass: false}) 
         
@@ -86,46 +84,26 @@ class SignupPage extends React.Component {
     handleSubmit =  (e) => {
         e.preventDefault();
         let { email, password, error } = this.state;
-        console.log('email/pw',email,password, error, this.state);
-        console.log('this.state. in handleSubmit',this.state);
         this.checkEmailPwPass().then((r)=>{
-           // this.setState({error: ''});
-            console.log('email passed',r);
-        this.props.signup(email, password)
-        .catch((res)=>{
-            console.log('email already in use');
-            res ? this.setState({error: 'Email already registered'}) : console.log("search failed");      
-        }).catch((e)=>{console.log('no match')});
+            this.props.signup(email, password)
+            .catch((res)=>{
+                console.log('email already in use');
+                res ? this.setState({error: 'Email already registered'}) : console.log("search failed");      
+            }).catch((e)=>{console.log('no match')});
       })
     };
 
-
-
-    
-    // checkPwPass = new Promise ((resolve, reject) => {
-    //     if (this.state){
-    //         if (this.state.pwLengthTest&& this.state.pwUpperPass && this.state.pwNumberPass && this.state.pwSpecialPass 
-    //             && this.state.pwMatchPass) {
-    //                 resolve();}
-    //             else{
-    //         reject();}
-    //     } ;
-       
-    // });
     checkEmailPwPass = async () => {
-       // if (this.state){
         
-            if (this.state.pwLengthPass&& this.state.pwUpperPass && this.state.pwNumberPass && this.state.pwSpecialPass 
-                && this.state.pwMatchPass && this.state.emailValidPass) {  
-                    console.log('async',this.state) ;
-                    this.setState({error: ''});
-                    return 'return value from async';
-                } else {
-                    this.setState({error: 'Please enter valid username/password'});
-                    throw new Error('no match in promise')}
-        } 
-        //else {throw new Error('no match')};
-        //};
+        if (this.state.pwLengthPass&& this.state.pwUpperPass && this.state.pwNumberPass && this.state.pwSpecialPass 
+            && this.state.pwMatchPass && this.state.emailValidPass) {  
+                console.log('async',this.state) ;
+                this.setState({error: ''});
+                return 'return value from async';
+        } else {
+                this.setState({error: 'Please enter valid username/password'});
+                throw new Error('no match in promise')}
+    } 
 
     render(){
         return(
