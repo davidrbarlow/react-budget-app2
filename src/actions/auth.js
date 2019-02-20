@@ -16,7 +16,6 @@ export const login = (email, password) => {
 
     const callLoginApi2 = async (email, password) => {
       try {
-        console.log('in try block');
         const res = await callLoginApi(email, password);
         await dispatch(setLoginSuccess(true));
         await  dispatch(setAuthToken(res.headers['x-auth']));
@@ -26,7 +25,6 @@ export const login = (email, password) => {
         dispatch(setLoginPending(false));
         dispatch(setLoginSuccess(false));
         dispatch(setLoginError(true)); 
-        console.log(e); 
       };
     };
 
@@ -50,15 +48,12 @@ export function signup(email,password){
       try{
         if (res.request.status===200)
         {
-            await dispatch(setLoginSuccess(true));
-            await  dispatch(setAuthToken(res.headers['x-auth']));
-            dispatch(setLoginPending(false));
+          await dispatch(setLoginSuccess(true));
+          await  dispatch(setAuthToken(res.headers['x-auth']));
+          dispatch(setLoginPending(false));
         }
         else {
-            
-            console.log('in else block');
-            console.log('in async catch  block');
-            return Promise.reject(res);
+          return Promise.reject(res);
         };
       }
       catch(res){
@@ -79,10 +74,8 @@ const callSignupApi = (email, password) =>{
     email,
     password
   }).then((res)=>{
-    console.log('res.request.status',res.request.status)
     return(res)
   }).catch((e)=>{
-    console.log('signup api',e.response);
     return(e.response);
   });
 };
