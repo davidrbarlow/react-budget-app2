@@ -1,8 +1,18 @@
 import React from 'react';
+import SideBar from './SideBar';
+import Header from './Header';
+import TransactionList from './TransactionList';
+import TransactionListFilters from './TransactionListFilters';
+import TransactionListControls from './TransactionListControls';
+
 
 const BudgetDashboardPage = () => (
     <div>
-        <p>Dashboard Page</p>
+        <Header />
+        <SideBar />
+        <TransactionListFilters />
+        <TransactionListControls />
+        <TransactionList />
     </div>
 );
 

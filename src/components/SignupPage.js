@@ -83,7 +83,7 @@ class SignupPage extends React.Component {
 
     handleSubmit =  (e) => {
         e.preventDefault();
-        let { email, password, error } = this.state;
+        let { email, password} = this.state;
         this.checkEmailPwPass().then((r)=>{
             this.props.signup(email, password)
             .catch((res)=>{
