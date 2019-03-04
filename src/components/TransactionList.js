@@ -5,18 +5,19 @@ import selectTransactions from '../selectors/transactions';
  
 export const TransactionList = (props) => (
     <div>
-    <div>
-      <div className="show-for-desktop">Date</div>
-      <div className="show-for-desktop">Description</div>
-      <p></p>
+    <div className="grid-container" >
+        
+        <span>
+            <div className="transaction-header">Transactions</div>
+        </span>
      
-    </div>
-    <div className="list-body">
+    
+    
     {console.log('props',props)}
         { 
             props.transactions.length === 0 ? (
                 <div>
-                <span>No Transactions</span>
+                    <span>No Transactions</span>
                 </div>
             ):(
             props.transactions.map((transaction) => {

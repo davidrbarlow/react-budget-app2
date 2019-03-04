@@ -22,6 +22,10 @@ class TransactionListControls  extends React.Component {
     });
   };
 
+  handleAdd = (e) => {
+    console.log('+ button clicked');
+  }
+
   handleSubmit =  (e) => {
     const data = new FormData();
     data.append('file', this.state.selectedFile, this.state.selectedFile.name);
@@ -44,18 +48,24 @@ class TransactionListControls  extends React.Component {
   render(){
     return(
 
+      <div className="controls">
+       <div>
+        <input  className="button--add" id={'addButton'} type="image" src={'/images/add.svg'} 
+        alt={'Add'} onClick={this.handleAdd}/>
+      </div>
       <div>
-      <img id={'addButton'} src={'/images/add.svg'} 
-      alt={'Add'} width={'20'} height={'20'}></img>
-      <img id={'deleteButton'} src={'/images/delete.svg'} 
-      alt={'Delete'} width={'20'} height={'20'}></img>
-  
+        <input  className="show-for-desktop trash-bin" id={'deleteButton'} type="image" src={'/images/delete.svg'} 
+        alt={'Delete'}/>
+      </div>
+      <div>
       <input type="file" name="fileToUpload" id="fileToUpload" 
+      className="show-for-desktop"
         onChange={this.handleSelectedFile}
         ref={ref=> this.fileInput = ref}
         ></input>
-      <input type="submit" value="Upload CSV" name="submit" onClick={this.handleSubmit}></input>
-    
+      <input type="submit" value="Upload CSV" name="submit" 
+      onClick={this.handleSubmit} className="show-for-desktop control-button"></input>
+      </div>
       
       </div>
 

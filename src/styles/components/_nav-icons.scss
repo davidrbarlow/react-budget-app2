@@ -1,0 +1,24 @@
+.nav-icons{
+  background-color: $blue;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: $s-size; 
+  @media (min-width: $desktop-breakpoint){
+    flex-direction: column;
+  }
+}
+
+.nav-icon{
+  padding: $s-size;
+  height: 64px;
+  width: 64px;
+  @media (min-width: $desktop-breakpoint){
+    height: 84px;
+    width: 84px;
+  }
+  &:hover {
+    background: $off-white;
+}
+  
+
+}

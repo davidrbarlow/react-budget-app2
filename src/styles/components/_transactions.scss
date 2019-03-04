@@ -1,0 +1,78 @@
+.transaction-header {
+  border: 1px solid darken($light-grey, 7%);
+  font-size: $font-size-xlarge;
+  //font-weight: 300px;
+  background-color: $light-grey;
+  margin-bottom: $s-size;
+  padding-left: $s-size;
+ 
+}
+
+.checkbox{
+  margin-left: $s-size;
+}
+
+.description {
+  font-size: $font-size-large;
+  font-weight: 200px;
+  padding-left: $s-size;
+  width: 20rem;
+  @media (min-width: $desktop-breakpoint){
+    font-size: $m-size;
+    margin-right: $s-size;
+    width: 60rem;
+  }
+  
+}
+
+.date{
+ 
+  font-weight: 100;
+  grid-column: 1;
+   grid-row: 1;
+   @media (min-width: $desktop-breakpoint){
+      font-weight: 500;
+      margin-right: $s-size;
+
+}
+}
+
+.description-mobile{
+  grid-column: 1;
+  grid-row: 2/4;
+  width:20rem
+  
+}
+
+.amount{
+  font-size: $font-size-large;
+  grid-column: 2;
+  grid-row: 1;
+  @media (min-width: $desktop-breakpoint){
+    font-size: default;
+    margin-right: $s-size;
+    width: 10rem;
+  }
+  
+}
+
+.icons{
+  grid-column: 2;
+  grid-row: 3;
+    @media (min-width: $desktop-breakpoint){
+      display: flex;
+      flex-direction: row;
+     
+    }
+  
+}
+
+.select{
+  grid-column: 2;
+  grid-row: 2;
+ 
+  @media (min-width: $desktop-breakpoint){
+    font-size: $m-size;
+    margin-right: $s-size;
+  }
+}

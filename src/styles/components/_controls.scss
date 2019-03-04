@@ -1,0 +1,40 @@
+.controls{
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0 1rem 0;
+}
+
+.button--add{
+  background-color: $light-grey;
+  border: 1px solid darken($light-grey, 7%);
+  height: 4rem;
+  padding: 1rem;
+  width: 4rem;
+  margin-right: $s-size;
+
+}
+
+.trash-bin{
+  height: 4rem;
+  padding: 0rem;
+  margin-right: $s-size;
+  width: 4rem;
+}
+
+.control-button{
+  
+  font-size: $font-size-large;
+  height: 4rem;
+  padding: 1rem;
+  margin-right: $s-size;
+  background-color: white;
+
+  border-radius: 8px;
+ // font-weight: bold;
+  
+
+}
+
+
+
+

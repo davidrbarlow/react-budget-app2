@@ -1,0 +1,20 @@
+.header{
+  background : $blue;
+  color: $off-white;
+  display: flex;
+  flex-direction: row;
+  font-size: $font-size-xxlarge;
+  justify-content: space-between;
+  padding: 0 $s-size 0 $s-size;
+  @media (min-width: $desktop-breakpoint){
+    font-size: 4rem;
+  }
+  
+}
+
+.header-button{
+  background : $blue;
+  border: none;
+  color: $off-white;
+  font-size: $font-size-small;
+}

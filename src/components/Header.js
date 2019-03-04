@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Header = () => (
-    <div>
-     <p>Budget App</p>
-     <button>Logout</button>
+    <div className="header">
+     Budget App
+     <button className="header-button">Logout</button>
     </div>
 );
 

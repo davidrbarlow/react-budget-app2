@@ -1,0 +1,89 @@
+.grid-container{
+  @media (min-width: $desktop-breakpoint){
+    
+ }
+ overflow: auto;
+    height: 80vh;;
+}
+
+.data-grid{
+  border-bottom: 1px solid $light-grey;
+  display: grid;
+  grid-template-columns: 1fr 60px, auto;
+  grid-template-rows: auto, auto, auto, auto;
+  margin-bottom: $s-size;
+  @media (min-width: $desktop-breakpoint){
+    display:flex;
+    flex-direction: row;
+   
+    //margin-bottom: 0;
+ }
+
+}
+
+.layout{
+  @media (min-width: $desktop-breakpoint){
+    display: grid;
+    grid-template-columns: auto, auto, auto;
+    grid-template-rows: auto, auto, auto, auto, auto, auto;
+    //height: 100vh;
+  }
+}
+
+.layout--top-left-corner{
+  @media (min-width: $desktop-breakpoint){
+    grid-column: 1;
+    grid-row: 1;
+    background: $blue;
+  }
+}
+
+.layout--nav-icon{
+  @media (min-width: $desktop-breakpoint){
+    grid-column: 1;
+    grid-row: 2/ span 4;
+    background: $blue;
+    
+  }
+}
+
+.layout--header{
+  @media (min-width: $desktop-breakpoint){
+    grid-column: 2/4;
+    grid-row: 1;
+  }
+}
+
+.layout--filters{
+  @media (min-width: $desktop-breakpoint){
+    grid-column: 2/4;
+    grid-row: 2;
+    margin: $s-size 0 0 $s-size;
+ 
+  }
+}
+
+.layout--controls{
+  @media (min-width: $desktop-breakpoint){
+    grid-column: 2/4;
+    grid-row: 3;
+    margin-left: $s-size;
+  }
+}
+
+.layout--transactions{
+  @media (min-width: $desktop-breakpoint){
+    grid-column: 2/4;
+    grid-row: 4/6;
+   // height: 1000px;
+   
+  }
+}
+
+
+ 
+
+
+
+
+

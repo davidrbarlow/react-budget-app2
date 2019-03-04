@@ -21,9 +21,9 @@ class TransactionListFilters extends React.Component {
 
   render(){
       return (
-        <div>
+        <div className="filters">
         <input 
-          type="text" 
+          type="text filters--text-input" 
           className="text-input"
           placeholder = "Search Expenses"
           value={this.props.filters.text} 
@@ -32,7 +32,7 @@ class TransactionListFilters extends React.Component {
         }}/>
 
         <select 
-          className="select"
+          className="select filters--select"
           value={this.props.filters.sortBy}
           onChange={(e)=>{
           if (e.target.value === 'date') 
@@ -46,7 +46,7 @@ class TransactionListFilters extends React.Component {
           <option value="date">Date</option>
           <option value="amount">Amount</option>
         </select>
-
+          <div className="filter--date-picker">
         <DateRangePicker
           startDate={this.props.filters.startDate} 
           startDateId="transactionStartDate"   
@@ -59,6 +59,7 @@ class TransactionListFilters extends React.Component {
           numberOfMonths={1}
           isOutsideRange={()=>false}
         />
+        </div>
         
         </div>
       )
