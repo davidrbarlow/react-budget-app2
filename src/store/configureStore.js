@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import authReducer from '../reducers/auth';
 import transactionsReducer from '../reducers/transactions';
 import filtersReducer from '../reducers/filters';
+import pageEditsReducer from '../reducers/pageEdits';
 
 export default () => {
 
@@ -13,7 +14,8 @@ const store = createStore(
     combineReducers({
     auth : authReducer,
     transactions: transactionsReducer,
-    filters: filtersReducer
+    filters: filtersReducer,
+    pageEdits: pageEditsReducer
 }),
     composeEnhancers(applyMiddleware(thunk))
     );

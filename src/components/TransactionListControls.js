@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { csvUpload, startSetTransactions } from '../actions/transactions';
+import {toggleAddTransaction} from '../actions/pageEdits';
 
 
 class TransactionListControls  extends React.Component {
-  // constructor(props) {
-  //   super(props);
+  //  constructor(props) {
+  //    super(props);
 
     state = {
         selectedFile : '',
@@ -13,7 +14,7 @@ class TransactionListControls  extends React.Component {
     };
 
   //this.handleSubmit = this.handleSubmit.bind(this);       
- // };
+  //};
 
   handleSelectedFile = (e) => {
     this.setState({
@@ -22,8 +23,10 @@ class TransactionListControls  extends React.Component {
     });
   };
 
-  handleAdd = (e) => {
-    console.log('+ button clicked');
+  handleAddRow = () => {
+    console.log("pressed*************");
+    this.props.toggleAddTransaction();
+    
   }
 
   handleSubmit =  (e) => {
@@ -50,11 +53,12 @@ class TransactionListControls  extends React.Component {
 
       <div className="controls">
        <div>
-        <input  className="button--add" id={'addButton'} type="image" src={'/images/add.svg'} 
-        alt={'Add'} onClick={this.handleAdd}/>
+        <input  className="button--add" id={'addButton'} type="image" 
+        src={this.props.pageEdits.addTransaction ? '/images/subtract.svg' : '/images/add.svg'} 
+        alt={'Add'} onClick={this.handleAddRow}/>
       </div>
       <div>
-        <input  className="show-for-desktop trash-bin" id={'deleteButton'} type="image" src={'/images/delete.svg'} 
+        <input  className="show-for-desktop trash-bin invisible" id={'deleteButton'} type="image" src={'/images/delete.svg'} 
         alt={'Delete'}/>
       </div>
       <div>
@@ -76,9 +80,14 @@ class TransactionListControls  extends React.Component {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-   startSetTransactions : () => dispatch(startSetTransactions())
+   startSetTransactions : () => dispatch(startSetTransactions()),
+   toggleAddTransaction : () => dispatch(toggleAddTransaction())
    })
 
-export default connect(undefined, mapDispatchToProps)(TransactionListControls);
+const mapStateToProps = (state) => ({
+    pageEdits: state.pageEdits
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionListControls);
 
 //export default TransactionListControls;

@@ -5,6 +5,29 @@ export const addTransaction = (transaction) => ({
   transaction
 });
 
+export const startAddTransaction = (transactionData = {}) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    const {
+        description = '', 
+        amount = 0, 
+        postedAt = 0 ,
+        cycle = ''
+    } = transactionData;
+  
+    const transaction = {description, amount, postedAt, cycle};
+
+    //add transaction api
+    return axios.post('http://localhost:3000/transaction/transaction',
+      transactionData
+    ).then((res)=>{
+      console.log('res.data.trans ',res);
+    }).catch((e)=>{
+      console.log(e);
+    });
+  };
+};
+
 export const removeTransaction = ({id} = {}) => ({
   type: 'REMOVE_TRANSACTION',
   id
