@@ -1,0 +1,16 @@
+const express = require('express');
+const app = express();
+const path = require('path');
+const publicPath=path.join(__dirname,'..','public');
+const port = process.env.PORT || 3001
+
+app.use(express.static(publicPath));
+
+app.get('/dashboard', (req, res) =>{
+    console.log(publicPath);
+    res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+app.listen(port, () =>{
+    console.log('Server is up');
+});
