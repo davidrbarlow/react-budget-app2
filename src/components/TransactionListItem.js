@@ -89,7 +89,7 @@ class TransactionListItem extends React.Component {
     
         
       {/*console.log('Translist render props',this.props, this.state)*/}
-      
+      {console.log('test env variable ',process.env.REACT_APP_API_URL)}
         <select className="select-transaction" value={this.state.cycle} onChange={this.onCycleChange}>
           <option value="NA"></option>
           <option value="Monthly">Monthly</option>

@@ -18,7 +18,7 @@ export const startAddTransaction = (transactionData = {}) => {
     const transaction = {description, amount, postedAt, cycle};
 
     //add transaction api
-    return axios.post('http://localhost:3000/transaction/transaction',
+    return axios.post(`${process.env.REACT_APP_API_URL}/transaction/transaction`,
       transaction
     ).then((res)=>{
     }).catch((e)=>{
@@ -38,7 +38,7 @@ export const editTransaction = (id, updates) =>({
 export const startEditTransaction = (id, updates) => {
   return (dispatch,getState) => {
    // const uid = getState().auth.uid;
-  return  axios.patch(`http://localhost:3000/transaction/edit/${id}`,updates)
+  return  axios.patch(`${process.env.REACT_APP_API_URL}/transaction/edit/${id}`,updates)
   .then(()=>{   
     dispatch(editTransaction(id, updates));
     });
@@ -54,7 +54,7 @@ export const startRemoveTransaction = (id) => {
   console.log('ID', id);
   return (dispatch,getState) => {
     //const uid = getState().auth.uid;
-    return  axios.delete(`http://localhost:3000/transaction/remove/${id}`)
+    return  axios.delete(`${process.env.REACT_APP_API_URL}/transaction/remove/${id}`)
     .then(()=>{   
       dispatch(removeTransaction(id));
       });
@@ -72,7 +72,7 @@ export const startRemoveTransactions = (ids) => {
   console.log('ID', idJSON);
   return (dispatch,getState) => {
     //const uid = getState().auth.uid;
-    return  axios.patch(`http://localhost:3000/transaction/removeSelected`,idJSON)
+    return  axios.patch(`${process.env.REACT_APP_API_URL}/transaction/removeSelected`,idJSON)
     .then(()=>{   
       dispatch(removeTransactions(ids));
       });
@@ -88,7 +88,7 @@ export const setTransactions = (transactions) => ({
 
 export const startSetTransactions = () => {
   return (dispatch)=>{
-    axios.get('http://localhost:3000/transaction').then((res)=>{
+    axios.get(`${process.env.REACT_APP_API_URL}/transaction`).then((res)=>{
     dispatch(setTransactions(res.data.transactions));
   })
   }
@@ -99,7 +99,7 @@ export const startSetTransactions = () => {
 
 
 export const csvUpload = (file) => {
-    return axios.post('http://localhost:3000/transaction/upload',
+    return axios.post(`${process.env.REACT_APP_API_URL}/transaction/upload`,
       file,
       { headers: {
         'Content-Type': 'multipart/form-data'
