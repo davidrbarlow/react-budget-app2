@@ -19,11 +19,12 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start2": "react-scripts start",
+    "start2": "node server/server.js",
     "start": "react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "yarn run build"
   },
   "eslintConfig": {
     "extends": "react-app"
