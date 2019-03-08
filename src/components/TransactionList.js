@@ -12,14 +12,15 @@ import { startSetTransactions } from '../actions/transactions';
 //export const TransactionList = (props) => (
     constructor(props) {
         super(props);
-        
+
         this.handleState = this.handleState.bind(this);
       
       }
 
- handleState = () => {
-     this.props.startSetTransactions();
-     this.setState(this.state);
+ handleState = async () => {
+     await this.props.startSetTransactions();
+     console.log('handleState', this.state);
+     await this.setState(this.state);
         //this.forceUpdate();
     };
     
@@ -35,15 +36,17 @@ render(){
              {this.props.pageEdits.addTransaction && <AddTransactionItem handleState={this.handleState}/>}    
         </div>
      
-             {console.log('props of TransactionList',this.props)}
+             {console.log('props of Transaction List',this.props)}
         {
             this.props.transactions.length === 0 ? (
                 <div>
                     <span>No Transactions</span>
                 </div>
             ):(
+                
             this.props.transactions.map((transaction) =>  
-                <TransactionListItem key={transaction._id} {...transaction} />
+            
+            <TransactionListItem key={transaction._id} {...transaction} handleState={this.handleState}/>
             )
         )
             

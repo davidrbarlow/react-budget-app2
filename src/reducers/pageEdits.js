@@ -1,6 +1,6 @@
 const defaultState = {
   addTransaction: false,
-  editTransaction: false
+  editTransaction: false,
 };
 
 export default  (state = defaultState, action) => {
@@ -10,8 +10,13 @@ export default  (state = defaultState, action) => {
       return {
         ...state,
         addTransaction: !state.addTransaction
-      }
-      default:
-        return state;
+      };
+    case 'EDIT_TRANSACTION_ID':
+    return {
+      ...state,
+      editTransactionId: action.id
+    };
+    default:
+      return state;
   }
 }

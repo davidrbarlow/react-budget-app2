@@ -1,14 +1,16 @@
 const transactionsReducerDefaultState = [];
 
 export default (state = transactionsReducerDefaultState, action)=>{
+  console.log("reducer action", state, action.id);
   switch (action.type){
     case 'ADD_TRANSACTION':
-    console.log('adding trans in reducer');
       return [
           ...state,
       action.transaction];
     case 'REMOVE_TRANSACTION':
       return state.filter((transaction)=>{return action.id !== transaction.id });
+    case 'REMOVE_TRANSACTIONS':
+      return state.filter((transaction)=>{return !action.ids.includes(transaction._id)});
     case 'EDIT_TRANSACTION':
       return state.map((transaction)=>{
         if (transaction.id === action.id){

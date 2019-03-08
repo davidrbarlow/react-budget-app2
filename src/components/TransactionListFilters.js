@@ -23,8 +23,8 @@ class TransactionListFilters extends React.Component {
       return (
         <div className="filters">
         <input 
-          type="text filters--text-input" 
-          className="text-input"
+          type="text" 
+          className="text-input text-input--filter"
           placeholder = "Search Expenses"
           value={this.props.filters.text} 
           onChange={(e)=>{

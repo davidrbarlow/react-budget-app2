@@ -6,7 +6,7 @@ const EditTransactionItem = (props) => {
 
   return (
     <div>
-      <TransactionItemForm
+      <TransactionItemForms
         transaction = {props.transaction}
         onSubmit={(transaction)=>{
         props.dispatch(startEditTransaction(props.transaction.id, transaction));

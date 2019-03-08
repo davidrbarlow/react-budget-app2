@@ -1,0 +1,9 @@
+.button-submit{
+  height: $l-size;
+  width: 10rem;
+  font-size: $font-size-large;
+  @media (min-width: $desktop-breakpoint){
+    margin: 0 1rem 0 0;
+  
+  }
+}

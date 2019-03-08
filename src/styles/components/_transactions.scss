@@ -21,9 +21,16 @@
     font-size: $m-size;
     margin-right: $s-size;
     width: 60rem;
-  }
+  } 
+}
+
+.description-mobile{
+  grid-column: 1;
+  grid-row: 2/4;
+  width:20rem
   
 }
+
 
 .date{
  
@@ -37,12 +44,7 @@
 }
 }
 
-.description-mobile{
-  grid-column: 1;
-  grid-row: 2/4;
-  width:20rem
-  
-}
+
 
 .amount{
   font-size: $font-size-large;
@@ -55,6 +57,8 @@
   }
   
 }
+
+
 
 .icons{
   grid-column: 2;

@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { csvUpload, startSetTransactions } from '../actions/transactions';
+import { csvUpload, startSetTransactions, startRemoveTransactions } from '../actions/transactions';
 import {toggleAddTransaction} from '../actions/pageEdits';
+//import { stat } from 'fs';
 
 
 class TransactionListControls  extends React.Component {
@@ -26,6 +27,11 @@ class TransactionListControls  extends React.Component {
   handleAddRow = () => {
     console.log("pressed*************");
     this.props.toggleAddTransaction();
+    
+  }
+
+  handleDeleteRows = () => {
+    this.props.startRemoveTransactions(this.props.selectedRows);
     
   }
 
@@ -58,8 +64,12 @@ class TransactionListControls  extends React.Component {
         alt={'Add'} onClick={this.handleAddRow}/>
       </div>
       <div>
-        <input  className="show-for-desktop trash-bin invisible" id={'deleteButton'} type="image" src={'/images/delete.svg'} 
-        alt={'Delete'}/>
+       {this.props.selectedRows.length>0 && <input className={"show-for-desktop trash-bin"} 
+        id={'deleteButton'} type="image" 
+        src={'/images/delete.svg'} 
+        alt={'Delete'}
+        onClick={this.handleDeleteRows}
+        />}
       </div>
       <div>
       <input type="file" name="fileToUpload" id="fileToUpload" 
@@ -81,12 +91,14 @@ class TransactionListControls  extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
    startSetTransactions : () => dispatch(startSetTransactions()),
-   toggleAddTransaction : () => dispatch(toggleAddTransaction())
-   })
+   toggleAddTransaction : () => dispatch(toggleAddTransaction()),
+   startRemoveTransactions : (ids) => dispatch(startRemoveTransactions(ids))
+   });
 
 const mapStateToProps = (state) => ({
+    selectedRows: state.selectedRows,
     pageEdits: state.pageEdits
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionListControls);
 

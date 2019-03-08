@@ -3,15 +3,11 @@ import moment from 'moment';
 
 
 export default  (transactions, {text, sortBy, startDate, endDate}) => {
-    console.log('text',text);
     return transactions.filter((transaction)=>{
-      console.log('transactions',transactions);
         const postedAtMoment = moment(transaction.postedAt);
-        console.log(postedAtMoment);
         const startDateMatch = startDate ? startDate.isSameOrBefore(postedAtMoment, 'day'): true;
         const endDateMatch = endDate ? endDate.isSameOrAfter(postedAtMoment, 'day'): true;
         const textMatch = transaction.description.toLowerCase().includes(text.toLowerCase());
-        console.log('startdatematch: ', startDateMatch,' endDateMatch ',endDateMatch,' textMatch ',textMatch);
         return startDateMatch && endDateMatch && textMatch;
 
     }).sort((a,b)=>{

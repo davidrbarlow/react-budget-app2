@@ -5,6 +5,7 @@ import authReducer from '../reducers/auth';
 import transactionsReducer from '../reducers/transactions';
 import filtersReducer from '../reducers/filters';
 import pageEditsReducer from '../reducers/pageEdits';
+import selectedRowsReducer from '../reducers/selectedRows';
 
 export default () => {
 
@@ -15,7 +16,8 @@ const store = createStore(
     auth : authReducer,
     transactions: transactionsReducer,
     filters: filtersReducer,
-    pageEdits: pageEditsReducer
+    pageEdits: pageEditsReducer,
+    selectedRows:  selectedRowsReducer
 }),
     composeEnhancers(applyMiddleware(thunk))
     );

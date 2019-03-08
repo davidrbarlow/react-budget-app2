@@ -11,9 +11,11 @@
 .select-transaction{
   font-size: $font-size-large;
   height: $l-size;
-  margin: 0 1rem 0 0;
-
+  
+  margin-bottom: $s-size;
   position: relative;
   width: 10rem;
-
+  @media (min-width: $desktop-breakpoint){
+    margin: 0 1rem 0 0;
+  }
 }

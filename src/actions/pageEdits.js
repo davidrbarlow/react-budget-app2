@@ -1,11 +1,20 @@
 
 
 export const toggleAddTransaction = () => {
-  console.log('setAddDisplay');
   return {
     type: 'TOGGLE_ADD_TRANSACTION',
   };
 };
+
+
+export const editTransactionId = (id) => {
+  return {
+    type: 'EDIT_TRANSACTION_ID',
+    id
+  };
+};
+
+
 
 
 

@@ -7,7 +7,7 @@ export const addTransaction = (transaction) => ({
 
 export const startAddTransaction = (transactionData = {}) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
+   // const uid = getState().auth.uid;
     const {
         description = '', 
         amount = 0, 
@@ -19,26 +19,67 @@ export const startAddTransaction = (transactionData = {}) => {
 
     //add transaction api
     return axios.post('http://localhost:3000/transaction/transaction',
-      transactionData
+      transaction
     ).then((res)=>{
-      console.log('res.data.trans ',res);
     }).catch((e)=>{
       console.log(e);
     });
   };
 };
 
-export const removeTransaction = ({id} = {}) => ({
-  type: 'REMOVE_TRANSACTION',
-  id
-});
-
-
-export const editExpense = (id, updates) =>({
+export const editTransaction = (id, updates) =>({
   type: 'EDIT_TRANSACTION',
   id,
   updates
 });
+
+//startEditTransaction
+
+export const startEditTransaction = (id, updates) => {
+  return (dispatch,getState) => {
+   // const uid = getState().auth.uid;
+  return  axios.patch(`http://localhost:3000/transaction/edit/${id}`,updates)
+  .then(()=>{   
+    dispatch(editTransaction(id, updates));
+    });
+  };
+}
+
+export const removeTransaction = (id) => ({
+  type: 'REMOVE_TRANSACTION',
+  id
+});
+
+export const startRemoveTransaction = (id) => {
+  console.log('ID', id);
+  return (dispatch,getState) => {
+    //const uid = getState().auth.uid;
+    return  axios.delete(`http://localhost:3000/transaction/remove/${id}`)
+    .then(()=>{   
+      dispatch(removeTransaction(id));
+      });
+   };
+}
+
+export const removeTransactions = (ids) => ({
+  type: 'REMOVE_TRANSACTIONS',
+  ids
+});
+
+export const startRemoveTransactions = (ids) => {
+  
+  const idJSON = JSON.stringify({ids});
+  console.log('ID', idJSON);
+  return (dispatch,getState) => {
+    //const uid = getState().auth.uid;
+    return  axios.patch(`http://localhost:3000/transaction/removeSelected`,idJSON)
+    .then(()=>{   
+      dispatch(removeTransactions(ids));
+      });
+   };
+}
+
+
 
 export const setTransactions = (transactions) => ({
   type:'SET_TRANSACTIONS',
@@ -47,10 +88,8 @@ export const setTransactions = (transactions) => ({
 
 export const startSetTransactions = () => {
   return (dispatch)=>{
-    console.log('in dispatch');
     axios.get('http://localhost:3000/transaction').then((res)=>{
     dispatch(setTransactions(res.data.transactions));
-    console.log('res.data.trans ',res.data.transactions);
   })
   }
 
@@ -74,13 +113,9 @@ export const csvUpload = (file) => {
         },
       })
       .then((res)=>{
-        console.log('axios res', res);
         if(res.data.status === 400){
-          console.log('throw');
           throw(res);
-          //console.log('JSON.stringify(res) ', JSON.stringify(res));
         }else{
-          console.log('else JSON.stringify(res) ', JSON.stringify(res));
           return(res);
         }  
       })
