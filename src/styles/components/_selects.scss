@@ -19,3 +19,9 @@
     margin: 0 1rem 0 0;
   }
 }
+
+.select-transaction--form{
+  @media (min-width: $desktop-breakpoint){
+    margin: 0 0rem 0 $s-size;
+  }
+}

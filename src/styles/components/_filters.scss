@@ -31,5 +31,8 @@
   grid-column: 1/3;
    grid-row: 2;
    margin-bottom: $s-size;
+   @media (max-width: $desktop-breakpoint){
+    margin-right: $xl-size;
+  }
 }
 

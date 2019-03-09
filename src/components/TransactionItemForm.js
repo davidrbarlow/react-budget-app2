@@ -113,7 +113,7 @@ export default class TransactionItemForm extends React.Component {
         </div>
       <div>
         <select
-          className="select-transaction"
+          className="select-transaction select-transaction--form"
           value={this.state.cycle}
           onChange={this.onCycleChange}
         >
@@ -124,7 +124,7 @@ export default class TransactionItemForm extends React.Component {
       
       </div>
       
-      <button className="button-submit">Submit</button>
+      <input className="check-input" type="image" alt={'OK'} src={'/images/checked.svg'}></input>
       
       
       </form>
