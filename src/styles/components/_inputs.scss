@@ -1,4 +1,4 @@
-.text-input{
+.input-text{
   font-size: $font-size-large;
   height: $l-size;
   width: 20rem;
@@ -8,13 +8,8 @@
   }
 }
 
-.text-input--filter{
-  font-size: $font-size-large;
+.input-text__filter{
   height: $xl-size;
-  @media (min-width: $desktop-breakpoint){
-    width: 45rem;
-    margin: 0 1rem 0 0;
-  }
 }
 
 .amount-input{
@@ -44,6 +39,14 @@
   margin-right: $s-size;
   @media (min-width: $desktop-breakpoint){
    
+  }
+}
+
+.error-message{
+  color: red;
+  @media (min-width: $desktop-breakpoint){
+    margin-left: $m-size;
+    
   }
 }
 

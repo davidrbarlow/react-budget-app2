@@ -9,6 +9,7 @@ import AppRouter, { history } from './routers/AppRouter'
 import configureStore from './store/configureStore';
 import * as serviceWorker from './serviceWorker';
 import { startSetTransactions } from './actions/transactions';
+import LoadingPage from './components/LoadingPage';
 
 import './styles/styles.scss';
 
@@ -41,6 +42,7 @@ const jsx =(
  );
 
 
+ ReactDOM.render(<LoadingPage/>, document.getElementById('root'));
 
 ReactDOM.render(jsx, document.getElementById('root'));
 

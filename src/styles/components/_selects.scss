@@ -1,27 +1,28 @@
 .select {
-  font-size: $font-size-xlarge;
-  height: $xl-size;
-  margin: 0 1rem 0 0;
-
-  position: relative;
-  width: 20rem;
-  
-}
-
-.select-transaction{
+  background-color: transparent;
+  border: 1px solid $light-grey;
+  color: $grey;
   font-size: $font-size-large;
-  height: $l-size;
-  
-  margin-bottom: $s-size;
-  position: relative;
+  margin: 0 1rem 0 0;
+ // overflow: hidden;
+  padding-left: $s-size;
+  //position: relative;
+ 
+}
+
+.select__filter {
+  height: $xl-size;
+  margin: 0;
   width: 10rem;
-  @media (min-width: $desktop-breakpoint){
-    margin: 0 1rem 0 0;
+  @media (max-width: $desktop-breakpoint){
+    width: 20rem;
   }
 }
 
-.select-transaction--form{
-  @media (min-width: $desktop-breakpoint){
-    margin: 0 0rem 0 $s-size;
-  }
+.select__transaction{
+  height: $l-size;
+  margin-bottom: $s-size;
+  width: 10rem;
 }
+
+

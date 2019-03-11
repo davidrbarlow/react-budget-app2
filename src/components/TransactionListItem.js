@@ -81,7 +81,12 @@ class TransactionListItem extends React.Component {
           >
         </input>
         <div className="date" >{moment(this.props.postedAt).format('MMMM Do, YYYY')}</div>
-        <div className="description-mobile show-for-mobile description" >{this.props.description}</div>
+
+        <span className="description-mobile show-for-mobile description"
+          onClick={()=>this.handleEditRow(this.props._id)}>
+            {this.props.description}
+        </span>
+        
         <div className="description show-for-desktop" >{this.props.description}</div>
         <div className="amount"> 
             {numeral(this.props.amount/100).format('$0,0.00')} 
@@ -90,7 +95,7 @@ class TransactionListItem extends React.Component {
         
       {/*console.log('Translist render props',this.props, this.state)*/}
       {console.log('test env variable ',process.env.REACT_APP_API_URL)}
-        <select className="select-transaction" value={this.state.cycle} onChange={this.onCycleChange}>
+        <select className="select select__transaction" value={this.state.cycle} onChange={this.onCycleChange}>
           <option value="NA"></option>
           <option value="Monthly">Monthly</option>
           <option value="Bi-weekly">Bi-weekly</option>  

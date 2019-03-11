@@ -67,67 +67,74 @@ export default class TransactionItemForm extends React.Component {
 
   render() {
     return(
-      
-      <form onSubmit={this.onSubmit} className="data-grid">
-      {this.state.error && <p>{this.state.error}</p>}
-      <div className="date-input">
-        <SingleDatePicker
-          date={this.state.postedAt}
-          onDateChange={this.onDateChange}
-          focused={this.state.calendarFocused}
-          onFocusChange = {this.onFocusChange}
-          numberOfMonths={1}
-          isOutsideRange={()=> false}
-          small={true}
-          
-        />
-      </div>
-      <div className="description-mobile show-for-mobile description">
-        <input
-          type="text"
-          placeholder="Description"
-          autoFocus
-          className="text-input"
-          value={this.state.description}
-          onChange={this.onDescriptionChange}
-        />
-      </div>
-      <div className="description show-for-desktop">
-        <input
-          type="text"
-          placeholder="Description"
-          autoFocus
-          className="text-input"
-          value={this.state.description}
-          onChange={this.onDescriptionChange}
-        />
-      </div>
-        <div className="amount">
-          <input
-          type="text"
-          placeholder="Amount"
-          className="amount-input"
-          value={this.state.amount}
-          onChange={this.onAmountChange}
-          />  
-        </div>
       <div>
-        <select
-          className="select-transaction select-transaction--form"
-          value={this.state.cycle}
-          onChange={this.onCycleChange}
-        >
-          <option value="NA"></option>
-          <option value="Monthly">Monthly</option>
-          <option value="Bi-weekly">Bi-weekly</option>
-        </select>
+        <div className="error-message">
+          {this.state.error && <p>{this.state.error}</p>}
+        </div>
+        <form onSubmit={this.onSubmit} className="data-grid">
+        <div className="date-input">
+          <SingleDatePicker
+            date={this.state.postedAt}
+            onDateChange={this.onDateChange}
+            focused={this.state.calendarFocused}
+            onFocusChange = {this.onFocusChange}
+            numberOfMonths={1}
+            isOutsideRange={()=> false}
+            small={true}
+            
+          />
+        </div>
+        <div className="description-mobile show-for-mobile description">
+          <input
+            type="text"
+            placeholder="Description"
+            autoFocus
+            className="input-text"
+            value={this.state.description}
+            onChange={this.onDescriptionChange}
+          />
+        </div>
+        <div className="description show-for-desktop">
+          <input
+            type="text"
+            placeholder="Description"
+            autoFocus
+            className="text-input"
+            value={this.state.description}
+            onChange={this.onDescriptionChange}
+          />
+        </div>
+          <div className="amount">
+            <input
+            type="text"
+            placeholder="Amount"
+            className="amount-input"
+            value={this.state.amount}
+            onChange={this.onAmountChange}
+            />  
+          </div>
+        <div>
+          <select
+            className="select select__filter"
+            value={this.state.cycle}
+            onChange={this.onCycleChange}
+          >
+            <option value="NA"></option>
+            <option value="Monthly">Monthly</option>
+            <option value="Bi-weekly">Bi-weekly</option>
+          </select>
+        
+        </div>
+        
+        <input className="check-input" type="image" alt={'OK'} src={'/images/checked.svg'}></input>
+        
+        
+        </form>
+      
+      
       
       </div>
       
-      <input className="check-input" type="image" alt={'OK'} src={'/images/checked.svg'}></input>
-      
-      
-      </form>
       
     )
   };

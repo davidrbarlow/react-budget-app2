@@ -27,8 +27,13 @@
 .description-mobile{
   grid-column: 1;
   grid-row: 2/4;
-  width:20rem
+  width:20rem;
+  cursor: pointer;
   
+}
+
+.description-mobile:hover{
+  color: $blue;
 }
 
 
@@ -40,7 +45,6 @@
    @media (min-width: $desktop-breakpoint){
       font-weight: 500;
       margin-right: $s-size;
-
 }
 }
 

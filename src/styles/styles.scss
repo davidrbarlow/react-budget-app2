@@ -2,14 +2,15 @@
 @import './base/base';
 @import './components/visibility';
 @import './components/header';
-@import './components/nav-icons';
 @import './components/inputs';
 @import './components/button';
 @import './components/selects';
 @import './components/transactions';
-@import './components/filters';
-@import './components/controls';
+@import './components/loader';
 
+@import './components/controls';
+@import './layout/nav-icons';
+@import './layout/filters';
 @import './layout/layout';
 
 
