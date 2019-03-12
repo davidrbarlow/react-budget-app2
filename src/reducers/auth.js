@@ -3,6 +3,7 @@ const SET_LOGIN_PENDING = 'SET_LOGIN_PENDING';
 const SET_LOGIN_SUCCESS = 'SET_LOGIN_SUCCESS';
 const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
 const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
+const SET_LOGOUT = 'SET_LOGOUT';
 
 const defaultState = {
     isLoginSuccess: false,
@@ -36,6 +37,8 @@ export default function reducer(state = defaultState, action) {
            ...state,
            authToken: action.authToken
        };
+    case SET_LOGOUT:
+       return{}
       default:
         return state;
     }

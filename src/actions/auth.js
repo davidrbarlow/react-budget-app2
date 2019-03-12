@@ -119,6 +119,33 @@ const callLoginApi = (email, password) =>{
   });
 };
 
+export const setLogout = (uid) => ({
+  type: 'SET_LOGOUT'
+});
+
+export const logout = (token) => {
+  return dispatch => {
+    const callLogoutApi2= async (token) => {  
+      const res = await dispatch(setLogout(token));
+
+      if (res.status===200){
+      }
+      else {
+        return Promise.reject(res.data.errmsg.search("logout failed"));
+      };
+    };
+    return callLogoutApi2(token);
+    
+  }
+};
+
+export const callLogoutApi = (token) => {
+  return axios.post(`http://localhost:3000/user/logout/${token}`).then((res)=>{
+    return(res);
+  }).catch((e)=>{
+    return(e);
+  });
+}
 
 
 

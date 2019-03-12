@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {logout} from '../actions/auth.js';
 
 const Header = () => (
     <div className="header">
@@ -7,4 +9,16 @@ const Header = () => (
     </div>
 );
 
-export default Header;
+const mapDispatchToProps = (dispatch) => {
+    return{
+        logout: (token) => dispatch(logout(token))
+    };
+} ;
+
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth.authToken,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
