@@ -115,7 +115,7 @@ export default class TransactionItemForm extends React.Component {
           </div>
         <div>
           <select
-            className="select select__filter"
+            className="select select__transaction"
             value={this.state.cycle}
             onChange={this.onCycleChange}
           >

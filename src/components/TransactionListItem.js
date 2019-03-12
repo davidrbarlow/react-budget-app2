@@ -55,14 +55,6 @@ class TransactionListItem extends React.Component {
     this.setState(()=>({selected}));
     console.log('ID of selected', this.props._id, selected);
     selected ? this.props.setSelectedTransactionId(this.props._id) :this.props.removeSelectedTrasactionId(this.props._id);
-    //toggle trash can view - might need to search state container and look to see if any are selected
-    //update state - true false
-
-    //when trash button clicked
-    //update transaciton reducer to add filter for deletes
-    //read from state container and create array of all checked user IDs
-    //create delete multiple API - Site.deleteMany({ userUID: uid, id: { $in: [10, 2, 3, 5]}}, function(err) {})
-    //action for startMultiDelete witch will call API then call reducer
   }
 
   render(){

@@ -20,9 +20,13 @@
 }
 
 .select__transaction{
-  height: $l-size;
+  height: $s-size;
   margin-bottom: $s-size;
-  width: 10rem;
+  width: 9rem;
+  @media (max-width: $desktop-breakpoint){
+    height: $l-size;
+    width: 10rem;
+  }
 }
 
 

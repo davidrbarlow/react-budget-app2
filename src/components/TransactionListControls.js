@@ -78,7 +78,7 @@ class TransactionListControls  extends React.Component {
         ref={ref=> this.fileInput = ref}
         ></input>
       <input type="submit" value="Upload CSV" name="submit" 
-      onClick={this.handleSubmit} className="show-for-desktop control-button"></input>
+      onClick={this.handleSubmit} className="show-for-desktop button"></input>
       </div>
       
       </div>

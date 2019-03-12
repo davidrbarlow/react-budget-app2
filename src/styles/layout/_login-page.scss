@@ -1,0 +1,45 @@
+.login-container{
+  align-items: center;
+    background: $light-grey;
+    background-size: cover;
+    display: flex; 
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+.login-content-box {
+  background: fade-out(white, .15);
+    margin: auto auto;
+    padding:  $l-size $l-size;
+    max-width: 80rem;
+}
+
+.login-header{
+  margin: 0 auto;
+  //max-width: 80rem;
+  text-align: center;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.login-form{
+  margin: 0 auto;
+}
+
+.login-page-sign-in-up{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-box {
+
+}
+
+
+

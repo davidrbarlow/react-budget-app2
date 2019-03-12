@@ -42,7 +42,7 @@ const jsx =(
  );
 
 
- ReactDOM.render(<LoadingPage/>, document.getElementById('root'));
+ ReactDOM.render(<LoadingPage />, document.getElementById('root'));
 
 ReactDOM.render(jsx, document.getElementById('root'));
 

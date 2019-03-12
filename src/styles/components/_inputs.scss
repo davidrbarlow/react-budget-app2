@@ -1,7 +1,7 @@
 .input-text{
   font-size: $font-size-large;
   height: $l-size;
-  width: 20rem;
+  width: 15rem;
   @media (min-width: $desktop-breakpoint){
     width: 45rem;
     margin: 0 1rem 0 0;
@@ -10,6 +10,16 @@
 
 .input-text__filter{
   height: $xl-size;
+  
+}
+
+.input-text__login{
+  margin-bottom: $s-size;
+  
+  @media (min-width: $desktop-breakpoint){
+    margin: 0 0rem $s-size 0;
+    width: 20rem;
+  }
 }
 
 .amount-input{

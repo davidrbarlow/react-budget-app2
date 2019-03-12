@@ -1,9 +1,16 @@
-.button-submit{
-  height: $l-size;
-  width: 10rem;
+
+
+.button{
   font-size: $font-size-large;
-  @media (min-width: $desktop-breakpoint){
-    margin: 0 1rem 0 0;
-    width: 8rem;
-  }
+  height: 4rem;
+  padding: 1rem;
+  margin-right: $s-size;
+  background-color: white;
+  border-radius: 8px;
+  width: 12rem;
+}
+
+.button__submit{
+  background-color: $blue;
+  color: white;
 }

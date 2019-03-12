@@ -43,38 +43,56 @@ render(){
     //let {email, password} = this.state;
     let {isLoginPending, isLoginSuccess, loginError} = this.props;
     return(
-    <div>  
-        <h1>Budget</h1>
-        <p>It's time to get your expenses under control.</p>
-        <form onSubmit={this.handleSubmit} id="login-form" autoComplete={this.autoComplete}>
-        <input
-        type="text"
-        name="email"
-        placeholder="email"
-        autoFocus
-        className="text-input"
-        //value={this.state.emal}
-        onChange={this.onEmailChange}
-        />
-        <input
-        name="password"
-        type="text"
-        placeholder="Password"
-        className="text-input"
-        //value={this.state.password}
-        onChange={this.onPasswordChange}
-        />
-        <button>
-        Login
-        </button>
-        <div>
-        { isLoginPending && <div>Please wait...</div> }
-        { isLoginSuccess && <div>Success.</div> }
-        { loginError && <div>{this.errorMessage}</div> }
-      </div>
-        </form>
-        <Link to="/signup">Signup</Link>
-    </div>
+        <div className="login-container">
+            <div className="login-content-box">
+                <div className="login-header">
+                    <h1>Budget</h1>
+                    <p>It's time to get your expenses under control.</p>
+                </div>
+                <div className="login">  
+                    <form 
+                    onSubmit={this.handleSubmit} id="login-form" 
+                    autoComplete={this.autoComplete}
+                    className="login-form">
+                        
+                        <div className="">
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            autoFocus={true}
+                            className="input-text input-text__login"
+                            //value={this.state.emal}
+                            onChange={this.onEmailChange}
+                        />  
+                        </div>
+                        <div>
+                        <input
+                            name="password"
+                            type="text"
+                            placeholder="Password"
+                            className="input-text input-text__login"
+                            //value={this.state.password}
+                            onChange={this.onPasswordChange}
+                        />
+                        
+                        </div>
+                        <div className="login-page-sign-in-up">
+                        <button className="button button__submit">
+                        Login
+                        </button>
+                        <div>
+                            { isLoginPending && <div>Please wait...</div> }
+                            { isLoginSuccess && <div>Success.</div> }
+                            { loginError && <div>{this.errorMessage}</div> }
+                        </div>
+                        <Link to="/signup">Sign up</Link>
+                        </div>  
+                    </form>
+                </div>
+            </div>
+        </div>
+        
         );
     };
 };
