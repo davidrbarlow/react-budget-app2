@@ -21,7 +21,7 @@ const EditTransactionItem = (props) => {
 
 const mapStateToProps = (state, props) => {
   return {
-      expense: state.transctions.find((transaction)=>transaction.id === props.match.params.id)
+      expense: state.transctions.find((transaction)=>transaction.id === props.match.params.id),
   };
 };
 export default connect(mapStateToProps)(EditExpensePage);

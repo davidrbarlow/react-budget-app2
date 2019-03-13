@@ -117,7 +117,7 @@ class TransactionListItem extends React.Component {
 const mapStateToProps = (state) => {
      return {
        pageEdits: state.pageEdits,
-       cycle2: state.cycle
+       cycle2: state.cycle,
      };
  }
 

@@ -69,7 +69,7 @@ const handleChange = () => {
    if (previousToken !== currentToken && currentToken){
       console.log('if passed');
       console.log(store.dispatch(startSetTransactions()));
-      store.dispatch(startSetTransactions()).then(()=>{
+      store.dispatch(startSetTransactions(currentToken)).then(()=>{
          renderApp();
          console.log('history.location.pathname ',history.location.pathname);
          if(history.location.pathname === '/'){

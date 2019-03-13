@@ -19,9 +19,7 @@ import { startSetTransactions } from '../actions/transactions';
 
  handleState = async () => {
      await this.props.startSetTransactions();
-     console.log('handleState', this.state);
      await this.setState(this.state);
-        //this.forceUpdate();
     };
     
 render(){
@@ -60,7 +58,7 @@ render(){
 
 
  const mapDispatchToProps = (dispatch) => ({
-    startSetTransactions : () => dispatch(startSetTransactions()),
+    startSetTransactions : (token) => dispatch(startSetTransactions(token)),
   //  toggleAddTransaction : () => dispatch(toggleAddTransaction())
     })
  
@@ -68,8 +66,7 @@ const mapStateToProps = (state) => {
   console.log('mapStateToProps state ', state);
     return {
       transactions: selectTransactions(state.transactions, state.filters),
-      pageEdits: state.pageEdits
-     //transactions: state.transactions
+      pageEdits: state.pageEdits,
     };
 }
  

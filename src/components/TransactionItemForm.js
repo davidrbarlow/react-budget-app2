@@ -141,6 +141,3 @@ export default class TransactionItemForm extends React.Component {
 
 };
 
-// const mapDispatchToProps = (dispatch) => ({
-//   editTransaction : () => dispatch(editTransaction(id,transaction))
-//   })

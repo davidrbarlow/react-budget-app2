@@ -31,7 +31,7 @@ class TransactionListControls  extends React.Component {
   }
 
   handleDeleteRows = () => {
-    this.props.startRemoveTransactions(this.props.selectedRows);
+    this.props.startRemoveTransactions(this.props.selectedRows).then(()=>{console.log('handledeletedRows')});
     
   }
 
@@ -39,7 +39,7 @@ class TransactionListControls  extends React.Component {
     const data = new FormData();
     data.append('file', this.state.selectedFile, this.state.selectedFile.name);
     
-    csvUpload(data)
+    csvUpload(data, this.props.authToken)
     .then((res)=>{
       console.log('successfully uploaded ', this.props);
       this.fileInput.value='';
@@ -97,7 +97,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
     selectedRows: state.selectedRows,
-    pageEdits: state.pageEdits
+    pageEdits: state.pageEdits,
+    authToken: state.auth.authToken,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionListControls);

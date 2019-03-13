@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { removeSelectedTransactionIds } from './selectedRows';
+
 
 export const addTransaction = (transaction) => ({
   type: 'ADD_TRANSACTION',
@@ -8,7 +10,7 @@ export const addTransaction = (transaction) => ({
 export const startAddTransaction = (transactionData = {}) => {
 
   return (dispatch, getState) => {
-   // const uid = getState().auth.uid;
+    const token = getState().auth.authToken;
     const {
         description = '', 
         amount = 0, 
@@ -21,7 +23,10 @@ export const startAddTransaction = (transactionData = {}) => {
     //add transaction api
     console.log('start add trans ', `${process.env.REACT_APP_API_URL}/transaction/transaction`);
     return axios.post(`${process.env.REACT_APP_API_URL}/transaction/transaction`,
-      transaction
+      transaction,
+      {
+        headers : { 'x-auth':token}
+      }
     ).then((res)=>{
     }).catch((e)=>{
       console.log(e);
@@ -39,8 +44,15 @@ export const editTransaction = (id, updates) =>({
 
 export const startEditTransaction = (id, updates) => {
   return (dispatch,getState) => {
-   // const uid = getState().auth.uid;
-  return  axios.patch(`${process.env.REACT_APP_API_URL}/transaction/edit/${id}`,updates)
+   const token = getState().auth.authToken;
+   console.log(token);
+  return  axios.patch(`${process.env.REACT_APP_API_URL}/transaction/edit/${id}`, 
+  updates,
+  {
+    headers: {
+      'x-auth': token
+    }
+  })
   .then(()=>{   
     dispatch(editTransaction(id, updates));
     });
@@ -55,8 +67,13 @@ export const removeTransaction = (id) => ({
 export const startRemoveTransaction = (id) => {
   console.log('ID', id);
   return (dispatch,getState) => {
-    //const uid = getState().auth.uid;
-    return  axios.delete(`${process.env.REACT_APP_API_URL}/transaction/remove/${id}`)
+    const token = getState().auth.authToken;
+    return  axios.delete(`${process.env.REACT_APP_API_URL}/transaction/remove/${id}`,
+    {
+      headers: {
+        'x-auth': token
+      }
+    })
     .then(()=>{   
       dispatch(removeTransaction(id));
       });
@@ -69,15 +86,21 @@ export const removeTransactions = (ids) => ({
 });
 
 export const startRemoveTransactions = (ids) => {
-  
-  const idJSON = JSON.stringify({ids});
-  console.log('ID', idJSON);
+ // const idJSON = JSON.stringify({ids});
   return (dispatch,getState) => {
-    //const uid = getState().auth.uid;
-    return  axios.patch(`${process.env.REACT_APP_API_URL}/transaction/removeSelected`,idJSON)
+    const token = getState().auth.authToken;
+    return  axios.patch(`${process.env.REACT_APP_API_URL}/transaction/removeSelected`,
+    {
+      ids
+    },
+    {
+      headers: {'x-auth': token}
+    })
     .then(()=>{   
+      console.log('############################in then of start remove transactions');
       dispatch(removeTransactions(ids));
-      });
+      dispatch(removeSelectedTransactionIds(ids));
+    });
    };
 }
 
@@ -89,8 +112,16 @@ export const setTransactions = (transactions) => ({
 });
 
 export const startSetTransactions = () => {
-  return (dispatch)=>{
-    return axios.get(`${process.env.REACT_APP_API_URL}/transaction`).then((res)=>{
+  
+  return (dispatch, getState)=>{
+    const token = getState().auth.authToken;
+    return axios.get(`${process.env.REACT_APP_API_URL}/transaction`,
+    {
+      headers:{
+        'x-auth':token
+      }
+    }
+    ).then((res)=>{
     dispatch(setTransactions(res.data.transactions));
   })
   }
@@ -100,11 +131,12 @@ export const startSetTransactions = () => {
 
 
 
-export const csvUpload = (file) => {
+export const csvUpload = (file, token) => {
     return axios.post(`${process.env.REACT_APP_API_URL}/transaction/upload`,
       file,
       { headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
+        'x-auth': token
         }
       },
       {
