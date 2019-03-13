@@ -1,14 +1,17 @@
 
 import React from 'react';
 //import {Router, Route, Switch, Link, NavLink} from 'react-router-dom';
-import {Router, Route, Switch} from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+
 
 import LoginPage from '../components/LoginPage';
 import SignupPage from '../components/SignupPage';
 import BudgetDashboardPage from '../components/BudgetDashboardPage';
 import NotFoundPage from '../components/NotFoundPage';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 
 export const history = createHistory();
@@ -16,11 +19,8 @@ export const history = createHistory();
 class AppRouter extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {};
-
         this.handleSubmit = this.onAuthStateChange.bind(this);
-
     };
 
     onAuthStateChange = (token) => {
@@ -35,15 +35,15 @@ class AppRouter extends React.Component {
 
 render(){
     return(
-    <Router history ={history}>
+        <Router history ={history}>
     <div>
-    <Switch>
-    <Route path="/" component={LoginPage} exact={true}/>
-    <Route path="/dashboard" component={BudgetDashboardPage}/>
-    <Route path="/signup" component={SignupPage}/>
-    <Route component={NotFoundPage}/>
-    </Switch> 
-    {this.onAuthStateChange(this.props.authToken)}
+        <Switch>
+            <PublicRoute path="/" component={LoginPage} exact={true}/>
+            <PrivateRoute path="/dashboard" component={BudgetDashboardPage}/>
+            <PublicRoute path="/signup" component={SignupPage}/>
+            <PublicRoute component={NotFoundPage}/>
+        </Switch> 
+    
 </div>
 </Router>)
 }

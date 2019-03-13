@@ -1,7 +1,6 @@
 const transactionsReducerDefaultState = [];
 
 export default (state = transactionsReducerDefaultState, action)=>{
-  console.log("reducer action", state, action.id);
   switch (action.type){
     case 'ADD_TRANSACTION':
       return [

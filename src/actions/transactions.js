@@ -97,7 +97,6 @@ export const startRemoveTransactions = (ids) => {
       headers: {'x-auth': token}
     })
     .then(()=>{   
-      console.log('############################in then of start remove transactions');
       dispatch(removeTransactions(ids));
       dispatch(removeSelectedTransactionIds(ids));
     });

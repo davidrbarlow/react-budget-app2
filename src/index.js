@@ -62,18 +62,12 @@ let currentToken;
 const handleChange = () => {
    let previousToken = currentToken;
    currentToken = select(store.getState());
-   console.log('previousToken ',previousToken);
-   console.log('currentToken ',currentToken);
 
 //   const token = 'test';
    if (previousToken !== currentToken && currentToken){
-      console.log('if passed');
-      console.log(store.dispatch(startSetTransactions()));
       store.dispatch(startSetTransactions(currentToken)).then(()=>{
          renderApp();
-         console.log('history.location.pathname ',history.location.pathname);
          if(history.location.pathname === '/'){
-            
             history.push('/dashboard'); 
          }
       });
@@ -83,11 +77,8 @@ const handleChange = () => {
    }
 }
 
-//handleChange();
-
-//check for statechange, 
-// if token check for token
-const unsubscribe = store.subscribe(()=>{
+//const unsubscribe = 
+store.subscribe(()=>{
    console.log(handleChange());
 });
 
