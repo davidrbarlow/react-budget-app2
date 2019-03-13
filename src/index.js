@@ -32,7 +32,7 @@ const store = configureStore();
 //   balance : 2850.0,
 //   description : "PHONE PAYMENT 2939484",
 // }));
-store.dispatch(startSetTransactions());
+
 
 
 const jsx =(
@@ -41,10 +41,58 @@ const jsx =(
   </Provider>
  );
 
+ let hasRendered = false;
 
- ReactDOM.render(<LoadingPage />, document.getElementById('root'));
+ const renderApp = () => {
+    if (!hasRendered) {
+      ReactDOM.render(jsx, document.getElementById('root'));
+      hasRendered= true;
+    }
+ };
 
-ReactDOM.render(jsx, document.getElementById('root'));
+
+ReactDOM.render(<LoadingPage />, document.getElementById('root'));
+renderApp();
+
+const select = (state) => {
+   return state.auth.authToken;
+}
+
+let currentToken;
+const handleChange = () => {
+   let previousToken = currentToken;
+   currentToken = select(store.getState());
+   console.log('previousToken ',previousToken);
+   console.log('currentToken ',currentToken);
+
+//   const token = 'test';
+   if (previousToken !== currentToken && currentToken){
+      console.log('if passed');
+      console.log(store.dispatch(startSetTransactions()));
+      store.dispatch(startSetTransactions()).then(()=>{
+         renderApp();
+         console.log('history.location.pathname ',history.location.pathname);
+         if(history.location.pathname === '/'){
+            
+            history.push('/dashboard'); 
+         }
+      });
+   } else if (!currentToken){
+      renderApp();
+      history.push('/');
+   }
+}
+
+//handleChange();
+
+//check for statechange, 
+// if token check for token
+const unsubscribe = store.subscribe(()=>{
+   console.log(handleChange());
+});
+
+
+
 
 
 

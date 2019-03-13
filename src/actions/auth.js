@@ -32,6 +32,36 @@ export const login = (email, password) => {
   
   };
 };
+
+
+
+export const logout = (token) => {
+  return (dispatch) => {
+    const callLogoutApi2 =  async (token) => {  
+      const res =  await callLogoutApi(token);
+      console.log('res', res);
+      try{
+        
+        if (res.status===200){
+          console.log('logout res ==200');
+           dispatch(setLogout());
+        }
+        else {
+          console.log('logout else');
+          return Promise.reject(res);
+        };
+      }
+      catch(res){
+        return Promise.reject(res);
+      }
+     
+    };
+
+    return callLogoutApi2(token);
+    
+  }
+};
+
  
 
 
@@ -109,7 +139,8 @@ export const setAuthToken = (authToken) => {
 };
 
 const callLoginApi = (email, password) =>{
-  return axios.post('http://localhost:3000/user/login',{
+  console.log('logout api2');
+  return axios.post(`${process.env.REACT_APP_API_URL}/user/login`,{
     email,
     password
   }).then((res)=>{
@@ -119,28 +150,19 @@ const callLoginApi = (email, password) =>{
   });
 };
 
-export const setLogout = (uid) => ({
+export const setLogout = () => ({
   type: 'SET_LOGOUT'
 });
 
-export const logout = (token) => {
-  return dispatch => {
-    const callLogoutApi2= async (token) => {  
-      const res = await dispatch(setLogout(token));
-
-      if (res.status===200){
-      }
-      else {
-        return Promise.reject(res.data.errmsg.search("logout failed"));
-      };
-    };
-    return callLogoutApi2(token);
-    
-  }
-};
 
 export const callLogoutApi = (token) => {
-  return axios.post(`http://localhost:3000/user/logout/${token}`).then((res)=>{
+   return axios.delete(`${process.env.REACT_APP_API_URL}/user/logout/token`,
+   {headers:
+     {
+     'x-auth': token
+   }
+  })
+  .then((res)=>{
     return(res);
   }).catch((e)=>{
     return(e);

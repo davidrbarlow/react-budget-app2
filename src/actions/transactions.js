@@ -6,6 +6,7 @@ export const addTransaction = (transaction) => ({
 });
 
 export const startAddTransaction = (transactionData = {}) => {
+
   return (dispatch, getState) => {
    // const uid = getState().auth.uid;
     const {
@@ -18,6 +19,7 @@ export const startAddTransaction = (transactionData = {}) => {
     const transaction = {description, amount, postedAt, cycle};
 
     //add transaction api
+    console.log('start add trans ', `${process.env.REACT_APP_API_URL}/transaction/transaction`);
     return axios.post(`${process.env.REACT_APP_API_URL}/transaction/transaction`,
       transaction
     ).then((res)=>{
@@ -88,7 +90,7 @@ export const setTransactions = (transactions) => ({
 
 export const startSetTransactions = () => {
   return (dispatch)=>{
-    axios.get(`${process.env.REACT_APP_API_URL}/transaction`).then((res)=>{
+    return axios.get(`${process.env.REACT_APP_API_URL}/transaction`).then((res)=>{
     dispatch(setTransactions(res.data.transactions));
   })
   }

@@ -99,7 +99,7 @@ export default class TransactionItemForm extends React.Component {
             type="text"
             placeholder="Description"
             autoFocus
-            className="text-input"
+            className="input-text"
             value={this.state.description}
             onChange={this.onDescriptionChange}
           />
