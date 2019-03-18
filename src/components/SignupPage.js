@@ -111,36 +111,38 @@ class SignupPage extends React.Component {
             <h1>Budget</h1>
             <p>It's time to get your expenses under control.</p>
             {this.state.error && <p>{this.state.error}</p>}
-            <form onSubmit={this.handleSubmit} id="login-form">
-            <input
-            type="text"
-            name="email"
-            placeholder="email"
-            autoFocus
-            className="text-input"
-            onChange={this.onEmailChange}
-            />
-            <input
-            name="password"
-            type="text"
-            placeholder="Password"
-            className="text-input"
-            onChange={this.onPasswordChange}
-            />
-            <input
-            name="password2"
-            type="text"
-            placeholder="Re-enter Password"
-            className="text-input"
-            onChange={this.onPassword2Change}
-            />
-            <p style={{color:this.state.emailValidColor}}>enter valid email</p>
-            <p style={{color:this.state.pwLengthColor}}>password must be 8 characters</p>
-            <p style={{color:this.state.pwUpperColor}}>password must contain a capital letter</p>
-            <p style={{color:this.state.pwSpecialColor}}>Password must contain special character</p>
-            <p style={{color:this.state.pwNumberColor}}>Password must contain a number</p>
-            <p style={{color:this.state.pwMatchColor}}>Passwords must match</p>
-            <button>
+            <form onSubmit={this.handleSubmit} id="login-form" className="signup-form">
+            <div className="login-text-input">
+                <input
+                type="text"
+                name="email"
+                placeholder="email"
+                autoFocus
+                className="input-text input-text__login"
+                onChange={this.onEmailChange}
+                />
+                <input
+                name="password"
+                type="text"
+                placeholder="Password"
+                className="input-text input-text__login"
+                onChange={this.onPasswordChange}
+                />
+                <input
+                name="password2"
+                type="text"
+                placeholder="Re-enter Password"
+                className="input-text input-text__login"
+                onChange={this.onPassword2Change}
+                />
+            </div>     
+            <span style={{color:this.state.emailValidColor}}>enter valid email</span>
+            <span style={{color:this.state.pwLengthColor}}>password must be 8 characters</span>
+            <span style={{color:this.state.pwUpperColor}}>password must contain a capital letter</span>
+            <span style={{color:this.state.pwSpecialColor}}>Password must contain special character</span>
+            <span style={{color:this.state.pwNumberColor}}>Password must contain a number</span>
+            <span style={{color:this.state.pwMatchColor}}>Passwords must match</span>
+            <button className="button button__submit">
             Signup
             </button>
             </form>
