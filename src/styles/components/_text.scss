@@ -1,0 +1,12 @@
+.text-login {
+  margin: 0 0 $s-size 0;
+  word-wrap: break-word;
+}
+
+.text-login__error {
+  color: red;
+}
+
+.text-login__status {
+  color: $blue;
+}

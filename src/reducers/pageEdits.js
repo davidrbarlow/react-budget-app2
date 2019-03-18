@@ -1,6 +1,7 @@
 const defaultState = {
   addTransaction: false,
-  editTransaction: false,
+  editTransactionId: '',
+  //editTransaction: false
 };
 
 export default  (state = defaultState, action) => {

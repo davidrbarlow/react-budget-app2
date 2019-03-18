@@ -62,7 +62,7 @@ let currentToken;
 const handleChange = () => {
    let previousToken = currentToken;
    currentToken = select(store.getState());
-
+   console.log('history location pathname', history.location.pathname );
 //   const token = 'test';
    if (previousToken !== currentToken && currentToken){
       store.dispatch(startSetTransactions(currentToken)).then(()=>{
@@ -71,8 +71,9 @@ const handleChange = () => {
             history.push('/dashboard'); 
          }
       });
-   } else if (!currentToken){
+   } else if (!currentToken && (history.location.pathname !== '/signup' && history.location.pathname !== '/')){
       renderApp();
+      console.log('push to home');
       history.push('/');
    }
 }

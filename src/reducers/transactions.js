@@ -7,7 +7,7 @@ export default (state = transactionsReducerDefaultState, action)=>{
           ...state,
       action.transaction];
     case 'REMOVE_TRANSACTION':
-      return state.filter((transaction)=>{return action.id !== transaction.id });
+      return state.filter((transaction)=>{return action.id !== transaction._id });
     case 'REMOVE_TRANSACTIONS':
       return state.filter((transaction)=>{return !action.ids.includes(transaction._id)});
     case 'EDIT_TRANSACTION':

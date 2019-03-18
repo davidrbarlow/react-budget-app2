@@ -12,7 +12,7 @@ class LoginPage extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.autoComplete = 'yes';
-        this.errorMessage = 'Username or Password is incorrect!'
+        this.errorMessage = 'Username/Password is incorrect!'
 
     };
 
@@ -47,6 +47,12 @@ render(){
                 <div className="login-header">
                     <h1>Budget</h1>
                     <p>It's time to get your expenses under control.</p>
+                    <div className="text-login">
+                    { isLoginPending && <div className="text-login__status">Please wait...</div> }
+                    { isLoginSuccess && <div className="text-login__status">Success!</div> }
+                    { loginError && <div className="text-login__error">{this.errorMessage}</div> }
+                    { console.log('login Error', this.props)}
+                </div>
                 </div>
                 <div className="login">  
                     <form 
@@ -68,7 +74,7 @@ render(){
                         <div>
                         <input
                             name="password"
-                            type="text"
+                            type="password"
                             placeholder="Password"
                             className="input-text input-text__login"
                             //value={this.state.password}
@@ -81,11 +87,9 @@ render(){
                         Login
                         </button>
                         <div>
-                            { isLoginPending && <div>Please wait...</div> }
-                            { isLoginSuccess && <div>Success.</div> }
-                            { loginError && <div>{this.errorMessage}</div> }
+                            <Link to="/signup">Sign up</Link>
                         </div>
-                        <Link to="/signup">Sign up</Link>
+                        
                         </div>  
                     </form>
                 </div>
@@ -98,10 +102,10 @@ render(){
 
 const mapStateToProps = (state)=>{
     return {
-    isLoginPending: state.isLoginPending,
-    isLoginSuccess: state.isLoginSuccess,
-    loginError: state.loginError,
-    authToken: state.authToken
+    isLoginPending: state.auth.isLoginPending,
+    isLoginSuccess: state.auth.isLoginSuccess,
+    loginError: state.auth.loginError,
+    authToken: state.auth.authToken
     }
 }
 
