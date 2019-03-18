@@ -3,15 +3,17 @@
   border: 1px solid $light-grey;
   color: $grey;
   font-size: $font-size-large;
+  height: 50px;
   margin: 0 1rem 0 0;
  // overflow: hidden;
   padding-left: $s-size;
   //position: relative;
- 
+  appearance: menulist-button;
 }
 
 .select__filter {
-  height: $xl-size;
+  //height: $xl-size;
+  height: 50px;
   margin: 0;
   width: 10rem;
   @media (max-width: $desktop-breakpoint){
@@ -20,7 +22,7 @@
 }
 
 .select__transaction{
-  height: $l-size;
+  //height: $l-size;
   margin-bottom: $s-size;
   width: 9rem;
   @media (max-width: $desktop-breakpoint){
