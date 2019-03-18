@@ -72,6 +72,7 @@ export function signup(email,password){
     dispatch(setLoginError(null));
 
     const callSignupApi2 = async (email, password) => {
+      console.log('calling signupApi')
       const res = await callSignupApi(email, password);
       
       try{
@@ -99,7 +100,7 @@ export function signup(email,password){
 };
 
 const callSignupApi = (email, password) =>{
-  return axios.post(`${process.env.REACT_APP_API_URL}`,{
+  return axios.post(`${process.env.REACT_APP_API_URL}/user`,{
     email,
     password
   }).then((res)=>{
