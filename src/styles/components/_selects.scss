@@ -1,20 +1,21 @@
 .select {
-  background-color: transparent;
+  //background-color: transparent;
   border: 1px solid $light-grey;
   color: $grey;
   font-size: $font-size-large;
-  height: 50px;
+ // height: 50px;
   margin: 0 1rem 0 0;
  // overflow: hidden;
   padding-left: $s-size;
   //position: relative;
-  appearance: menulist-button;
+  //-webkit-appearance: none;
 }
 
 .select__filter {
-  //height: $xl-size;
-  height: 50px;
+  height: $xl-size;
+  //`height: 50px;
   margin: 0;
+  -webkit-appearance: menulist;
   width: 10rem;
   @media (max-width: $desktop-breakpoint){
     width: 20rem;
