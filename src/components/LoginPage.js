@@ -51,7 +51,6 @@ render(){
                     { isLoginPending && <div className="text-login__status">Please wait...</div> }
                     { isLoginSuccess && <div className="text-login__status">Success!</div> }
                     { loginError && <div className="text-login__error">{this.errorMessage}</div> }
-                    { console.log('login Error', this.props)}
                 </div>
                 </div>
                 <div className="login">  

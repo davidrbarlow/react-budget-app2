@@ -99,7 +99,7 @@ export function signup(email,password){
 };
 
 const callSignupApi = (email, password) =>{
-  return axios.post('http://localhost:3000/user/',{
+  return axios.post(`${process.env.REACT_APP_API_URL}`,{
     email,
     password
   }).then((res)=>{
