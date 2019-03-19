@@ -66,12 +66,13 @@ class SignupPage extends React.Component {
     onPasswordChange = (e) => {
         
         const password = e.target.value;
+        const password2 = this.state.password2;
         this.setState(()=>({password}));
         this.checkPasswordLength(password);
         this.checkPasswordUpper(password);
         this.checkPasswordSpecial(password);
         this.checkPasswordNumber(password);
-        this.checkPasswordMatch(password, this.state.password);
+        this.checkPasswordMatch(password, password2);
     }
 
     onPassword2Change = (e) => {
@@ -123,14 +124,14 @@ class SignupPage extends React.Component {
                 />
                 <input
                 name="password"
-                type="text"
+                type="password"
                 placeholder="Password"
                 className="input-text input-text__login"
                 onChange={this.onPasswordChange}
                 />
                 <input
                 name="password2"
-                type="text"
+                type="password"
                 placeholder="Re-enter Password"
                 className="input-text input-text__login"
                 onChange={this.onPassword2Change}

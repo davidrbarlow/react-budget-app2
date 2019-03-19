@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shoud render Header correctly 1`] = `
+<div
+  className="header"
+>
+  Budget App
+  <button
+    className="header-button"
+    onClick={[Function]}
+  >
+    Logout
+  </button>
+</div>
+`;

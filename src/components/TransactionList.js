@@ -8,7 +8,7 @@ import { startSetTransactions } from '../actions/transactions';
 
 
 
- class TransactionList extends React.Component {
+export class TransactionList extends React.Component {
 //export const TransactionList = (props) => (
     constructor(props) {
         super(props);

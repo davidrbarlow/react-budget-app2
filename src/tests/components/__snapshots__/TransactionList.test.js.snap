@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render TransactionList with Transcations  1`] = `
+<div>
+  <div
+    className="grid-container"
+  >
+    <span>
+      <div
+        className="transaction-header"
+      >
+        Transactions
+      </div>
+    </span>
+    <div />
+    <Connect(TransactionListItem)
+      _id="5c705b052c747592ec78279d"
+      accountType="Bank"
+      amount={4000}
+      balance={8111.86}
+      description="Online Transfer from CHK ...3025 transaction#: 7899743059"
+      handleState={[Function]}
+      key="5c705b052c747592ec78279d"
+      postedAt={0}
+    />
+    <Connect(TransactionListItem)
+      _id="5c705b052c747592ec78279a"
+      accountType="Bank"
+      amount={-1096.34}
+      balance={3017.1}
+      description="USBANK LOAN      PAYMENT                    PPD ID:  580580574"
+      handleState={[Function]}
+      key="5c705b052c747592ec78279a"
+      postedAt={-345600000}
+    />
+    <Connect(TransactionListItem)
+      _id="5c705b052c747592ec78279c"
+      accountType="Bank"
+      amount={-140}
+      balance={7971.86}
+      description="Online Payment 7899735230 To AT&T MOBILITY 02/01"
+      handleState={[Function]}
+      key="5c705b052c747592ec78279c"
+      postedAt={345600000}
+    />
+  </div>
+</div>
+`;

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {logout} from '../actions/auth.js';
 
 
-class Header extends React.Component {
+export class Header extends React.Component {
     constructor(props) {
         super(props);
 
