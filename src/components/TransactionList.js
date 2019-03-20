@@ -33,8 +33,6 @@ render(){
         <div>
              {this.props.pageEdits.addTransaction && <AddTransactionItem handleState={this.handleState}/>}    
         </div>
-     
-             {console.log('props of Transaction List',this.props)}
         {
             this.props.transactions.length === 0 ? (
                 <div>

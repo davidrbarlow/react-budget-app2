@@ -35,19 +35,19 @@ class TransactionListItem extends React.Component {
   }
 
   onCycleChange = (e) => {
-        const cycle = e.target.value;
-        this.setState(()=>({cycle}));
-        this.props.startEditTransaction(this.props._id, {cycle});
+    const cycle = e.target.value;
+    this.setState(()=>({cycle}));
+    this.props.startEditTransaction(this.props._id, {cycle});
   }
 
   onSubmit = async (transaction) => {
-      const {cycle} = transaction;
-      await this.props.startEditTransaction(this.props._id, transaction);
-      this.setState(()=>({cycle}));
-      // window.location.reload();
-      await this.props.updateEditTransactionId(' ');
-     // this.props.toggleAddTransaction();
-       this.props.handleState();
+    const {cycle} = transaction;
+    await this.props.startEditTransaction(this.props._id, transaction);
+    this.setState(()=>({cycle}));
+    // window.location.reload();
+    await this.props.updateEditTransactionId(' ');
+    // this.props.toggleAddTransaction();
+      this.props.handleState();
   };
 
   onSelectedChange = (e) => {

@@ -39,15 +39,11 @@ export const logout = (token) => {
   return (dispatch) => {
     const callLogoutApi2 =  async (token) => {  
       const res =  await callLogoutApi(token);
-      console.log('res', res);
       try{
-        
         if (res.status===200){
-          console.log('logout res ==200');
            dispatch(setLogout());
         }
         else {
-          console.log('logout else');
           return Promise.reject(res);
         };
       }
@@ -56,9 +52,7 @@ export const logout = (token) => {
       }
      
     };
-
     return callLogoutApi2(token);
-    
   }
 };
 
@@ -72,13 +66,10 @@ export function signup(email,password){
     dispatch(setLoginError(null));
 
     const callSignupApi2 = async (email, password) => {
-      console.log('calling signupApi')
       const res = await callSignupApi(email, password);
-      
       try{
         //if (res.request.status===200)
         if (res.status===200)
-       
         {
           await dispatch(setLoginSuccess(true));
           await  dispatch(setAuthToken(res.headers['x-auth']));
@@ -140,7 +131,6 @@ export const setAuthToken = (authToken) => {
 };
 
 const callLoginApi = (email, password) =>{
-  console.log('logout api2');
   return axios.post(`${process.env.REACT_APP_API_URL}/user/login`,{
     email,
     password

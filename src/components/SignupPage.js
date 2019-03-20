@@ -2,17 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {signup} from '../actions/auth';
 
-class SignupPage extends React.Component {
+export class SignupPage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            pwLengthPass: false,
-            pwUpperPass: false,
-            pwNumberPass:false,
-            pwSpecialPass:false,
-            pwMatchPass: false,
-            emValidPass: true
+            // pwLengthPass: false,
+            // pwUpperPass: false,
+            // pwNumberPass:false,
+            // pwSpecialPass:false,
+            // pwMatchPass: false,
+            //  emValidPass: true
         };
 
         this.onPasswordChange = this.onPasswordChange.bind(this);       
@@ -20,7 +20,7 @@ class SignupPage extends React.Component {
 
 
     checkPasswordLength = (password) => {
-        password.length>0 && password.length < 8 ? this.setState({pwLengthColor: 'red', pwLengthPass: false}) 
+        password.length>=0 && password.length < 8 ? this.setState({pwLengthColor: 'red', pwLengthPass: false}) 
        : this.setState({pwLengthColor: 'green', pwLengthPass:true})  ; 
     }
 
@@ -96,7 +96,7 @@ class SignupPage extends React.Component {
 
     checkEmailPwPass = async () => {
         
-        if (this.state.pwLengthPass&& this.state.pwUpperPass && this.state.pwNumberPass && this.state.pwSpecialPass 
+        if (this.state.pwLengthPass && this.state.pwUpperPass && this.state.pwNumberPass && this.state.pwSpecialPass 
             && this.state.pwMatchPass && this.state.emailValidPass) {  
                 console.log('async',this.state) ;
                 this.setState({error: ''});

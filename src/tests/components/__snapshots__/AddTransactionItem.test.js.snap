@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should display add transaction row 1`] = `
+<div>
+  <TransactionItemForm
+    onSubmit={[Function]}
+  />
+</div>
+`;

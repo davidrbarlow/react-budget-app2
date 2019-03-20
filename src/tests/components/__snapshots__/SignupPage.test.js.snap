@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shoud render Signup Page correctly 1`] = `
+<div>
+  <h1>
+    Budget
+  </h1>
+  <p>
+    It's time to get your expenses under control.
+  </p>
+  <form
+    className="signup-form"
+    id="login-form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="login-text-input"
+    >
+      <input
+        autoFocus={true}
+        className="input-text input-text__login"
+        name="email"
+        onChange={[Function]}
+        placeholder="email"
+        type="text"
+      />
+      <input
+        className="input-text input-text__login"
+        name="password"
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+      />
+      <input
+        className="input-text input-text__login"
+        name="password2"
+        onChange={[Function]}
+        placeholder="Re-enter Password"
+        type="password"
+      />
+    </div>
+    <span
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+    >
+      enter valid email
+    </span>
+    <span
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+    >
+      password must be 8 characters
+    </span>
+    <span
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+    >
+      password must contain a capital letter
+    </span>
+    <span
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+    >
+      Password must contain special character
+    </span>
+    <span
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+    >
+      Password must contain a number
+    </span>
+    <span
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+    >
+      Passwords must match
+    </span>
+    <button
+      className="button button__submit"
+    >
+      Signup
+    </button>
+  </form>
+</div>
+`;
