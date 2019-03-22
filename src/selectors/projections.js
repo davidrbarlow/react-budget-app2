@@ -8,7 +8,7 @@ export default  (transactions, {text, sortBy, startDate, endDate}) => {
         const startDateMatch = startDate ? startDate.isSameOrBefore(postedAtMoment, 'day'): true;
         const endDateMatch = endDate ? endDate.isSameOrAfter(postedAtMoment, 'day'): true;
         const textMatch = transaction.description.toLowerCase().includes(text.toLowerCase());
-        const projectionNoMatch = transaction.accountType !== 'Projection';
+        const projectionNoMatch = transaction.accountType === 'Projection';
         console.log('transaction from selectors', transaction);
         return startDateMatch && endDateMatch && textMatch && projectionNoMatch;
 

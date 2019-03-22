@@ -7,6 +7,9 @@ import filtersReducer from '../reducers/filters';
 import pageEditsReducer from '../reducers/pageEdits';
 import selectedRowsReducer from '../reducers/selectedRows';
 
+//remove
+import { setAuthToken } from '../actions/auth';
+
 export default () => {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -21,6 +24,9 @@ const store = createStore(
 }),
     composeEnhancers(applyMiddleware(thunk))
     );
+
+    // posibly remove
+    store.dispatch(setAuthToken(localStorage.getItem('TOKEN')));
 
 return store;
 };

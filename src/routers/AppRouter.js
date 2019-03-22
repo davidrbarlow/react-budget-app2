@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import LoginPage from '../components/LoginPage';
 import SignupPage from '../components/SignupPage';
 import BudgetDashboardPage from '../components/BudgetDashboardPage';
+import ProjectionDashboardPage from '../components/ProjectionDashboardPage';
 import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -40,6 +41,7 @@ render(){
         <Switch>
             <PublicRoute path="/" component={LoginPage} exact={true}/>
             <PrivateRoute path="/dashboard" component={BudgetDashboardPage}/>
+            <PrivateRoute path="/projection" component={ProjectionDashboardPage}/>
             <PublicRoute path="/signup" component={SignupPage}/>
             <PublicRoute component={NotFoundPage}/>
         </Switch> 

@@ -1,9 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import moment from 'moment';
 import {SingleDatePicker} from 'react-dates';
 //import {editTransaction} from '../actions/transactions';
 
-export default class TransactionItemForm extends React.Component {
+export class TransactionItemForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ export default class TransactionItemForm extends React.Component {
       postedAt: props.transaction ? moment(props.transaction.postedAt) : moment(),
       description: props.transaction ? props.transaction.description : '',
       amount: props.transaction ? (props.transaction.amount/100).toString() : '',
-      cycle: props.transaction ? props.transaction.cycle : ' ',
+      cycle: props.transaction ? props.transaction.cycle : 'Type',
       calaendarFocustd: false,
       error: '',
      // _id: props._id ? props._id : ' ',
@@ -21,6 +22,8 @@ export default class TransactionItemForm extends React.Component {
   }
 
   onSubmit = (e) => {
+    let cycle = this.state.cycle;
+    
     e.preventDefault();
     if (!this.state.description || !this.state.amount){     
       this.setState(()=>({error: 'Please provide description and amount'}))
@@ -30,7 +33,8 @@ export default class TransactionItemForm extends React.Component {
         description: this.state.description,
         amount : parseFloat(this.state.amount, 10) * 100,
         postedAt: this.state.postedAt.valueOf(),
-        cycle: this.state.cycle,
+        accountType: (this.props.activePage==='projection')? 'Projection' : '',
+        cycle,
         });
       //this.props.editTransaction()
       }
@@ -119,9 +123,11 @@ export default class TransactionItemForm extends React.Component {
             value={this.state.cycle}
             onChange={this.onCycleChange}
           >
+            <option value="Type" disabled>Type</option>
             <option value="NA"></option>
-            <option value="Monthly">Monthly</option>
+            <option value="Balance">Balance</option>
             <option value="Bi-weekly">Bi-weekly</option>
+            <option value="Monthly">Monthly</option>
           </select>
         
         </div>
@@ -140,4 +146,10 @@ export default class TransactionItemForm extends React.Component {
   };
 
 };
+
+const mapStateToProps = (state) =>({
+  activePage : state.pageEdits.activePage
+});
+
+export default connect(mapStateToProps)(TransactionItemForm);
 

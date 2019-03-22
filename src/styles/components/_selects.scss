@@ -17,17 +17,16 @@
   margin: 0;
   -webkit-appearance: menulist;
   width: 10rem;
-  @media (max-width: $desktop-breakpoint){
+  @media (min-width: $desktop-breakpoint){
     width: 20rem;
   }
 }
 
 .select__transaction{
-  //height: $l-size;
   margin-bottom: $s-size;
   width: 9rem;
-  @media (max-width: $desktop-breakpoint){
-    height: $l-size;
+  height: $l-size;
+  @media (min-width: $desktop-breakpoint){
     width: 10rem;
   }
 }

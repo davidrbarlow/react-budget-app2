@@ -19,6 +19,7 @@ export const PrivateRoute = ({
         )
 
     )}/>
+
 );
 
 const mapStateToProps = (state) => {

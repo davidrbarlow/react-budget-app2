@@ -8,6 +8,7 @@ import TransactionItemForm from './TransactionItemForm';
 import {editTransactionId} from '../actions/pageEdits';
 import {removeSelectedTransactionId, setSelectedTransactionId} from '../actions/selectedRows';
 import {startEditTransaction, startRemoveTransaction} from '../actions/transactions';
+//import { stat } from 'fs';
 
  //
 class TransactionListItem extends React.Component {
@@ -15,7 +16,7 @@ class TransactionListItem extends React.Component {
       super(props);
 
     this.state = {
-        cycle: props ? props.cycle : ' ',
+        cycle: props.cycle ? props.cycle : '',
         selected : false
     };
 
@@ -35,9 +36,10 @@ class TransactionListItem extends React.Component {
   }
 
   onCycleChange = (e) => {
+    
     const cycle = e.target.value;
-    this.setState(()=>({cycle}));
-    this.props.startEditTransaction(this.props._id, {cycle});
+    this.setState(()=>({ cycle }));
+    this.props.startEditTransaction(this.props._id, { cycle });
   }
 
   onSubmit = async (transaction) => {
@@ -88,9 +90,11 @@ class TransactionListItem extends React.Component {
       {/*console.log('Translist render props',this.props, this.state)*/}
       {console.log('test env variable ',process.env.REACT_APP_API_URL)}
         <select className="select select__transaction" value={this.state.cycle} onChange={this.onCycleChange}>
-          <option value="NA"></option>
-          <option value="Monthly">Monthly</option>
-          <option value="Bi-weekly">Bi-weekly</option>  
+       
+        <option value="NA"></option>
+        <option value="Balance">Balance</option>
+        <option value="Bi-weekly">Bi-weekly</option>
+        <option value="Monthly">Monthly</option>
         </select>
         
         <div className="icons show-for-desktop">
@@ -118,6 +122,7 @@ const mapStateToProps = (state) => {
      return {
        pageEdits: state.pageEdits,
        cycle2: state.cycle,
+     //  amount: state.transactions.amount
      };
  }
 

@@ -71,14 +71,21 @@ class TransactionListControls  extends React.Component {
         onClick={this.handleDeleteRows}
         />}
       </div>
-      <div>
-      <input type="file" name="fileToUpload" id="fileToUpload" 
-      className="show-for-desktop"
-        onChange={this.handleSelectedFile}
-        ref={ref=> this.fileInput = ref}
+      <div> 
+      {this.props.pageEdits.activePage === 'dashboard' && 
+        <input 
+          type="file" name="fileToUpload" id="fileToUpload" 
+          className="show-for-desktop"
+          onChange={this.handleSelectedFile}
+          ref={ref=> this.fileInput = ref}
         ></input>
-      <input type="submit" value="Upload CSV" name="submit" 
-      onClick={this.handleSubmit} className="show-for-desktop button"></input>
+      }
+      {this.props.pageEdits.activePage === 'dashboard' && 
+        <input 
+          type="submit" value="Upload CSV" name="submit" 
+          onClick={this.handleSubmit} className="show-for-desktop button">
+        </input>
+      }
       </div>
       
       </div>

@@ -10,6 +10,7 @@ import configureStore from './store/configureStore';
 import * as serviceWorker from './serviceWorker';
 import { startSetTransactions } from './actions/transactions';
 import LoadingPage from './components/LoadingPage';
+//import auth from './reducers/auth';
 
 import './styles/styles.scss';
 
@@ -32,6 +33,40 @@ const store = configureStore();
 //   balance : 2850.0,
 //   description : "PHONE PAYMENT 2939484",
 // }));
+const select = (state) => {
+   return state.auth.authToken;
+};
+
+let currentToken;
+const handleChange = () => {
+   let previousToken = currentToken;
+
+   currentToken = select(store.getState());
+   console.log('index handle change called, current token is ', currentToken);
+   console.log('history location pathname', history.location.pathname );
+//   const token = 'test';
+   if (previousToken !== currentToken && currentToken){
+      store.dispatch(startSetTransactions(currentToken)).then(()=>{
+         renderApp();
+         if(history.location.pathname === '/'){
+            history.push('/dashboard'); 
+         }
+      });
+   } else if (!currentToken && (history.location.pathname !== '/signup' && history.location.pathname !== '/')){
+      renderApp();
+      console.log('push to home');
+      history.push('/');
+   }
+};
+
+store.subscribe(()=>{
+   //posibly remove
+   localStorage.setItem('TOKEN', store.getState().auth.authToken);
+   console.log(handleChange());
+});
+
+// possibly remove
+store.dispatch(startSetTransactions(store.getState().auth.authToken));
 
 
 
@@ -54,34 +89,18 @@ const jsx =(
 ReactDOM.render(<LoadingPage />, document.getElementById('root'));
 renderApp();
 
-const select = (state) => {
-   return state.auth.authToken;
-}
 
-let currentToken;
-const handleChange = () => {
-   let previousToken = currentToken;
-   currentToken = select(store.getState());
-   console.log('history location pathname', history.location.pathname );
-//   const token = 'test';
-   if (previousToken !== currentToken && currentToken){
-      store.dispatch(startSetTransactions(currentToken)).then(()=>{
-         renderApp();
-         if(history.location.pathname === '/'){
-            history.push('/dashboard'); 
-         }
-      });
-   } else if (!currentToken && (history.location.pathname !== '/signup' && history.location.pathname !== '/')){
-      renderApp();
-      console.log('push to home');
-      history.push('/');
-   }
-}
 
-//const unsubscribe = 
-store.subscribe(()=>{
-   console.log(handleChange());
-});
+
+
+
+
+
+// store.subscribe(()=>{
+//    localStorage.setItem('TOKEN', store.getState().auth.authToken);
+//    console.log('handleChange called');
+//    console.log(handleChange());
+// });
 
 
 

@@ -14,6 +14,16 @@ export const editTransactionId = (id) => {
   };
 };
 
+export const setActivePage = (activePage) => {
+  return {
+    type: 'ACTIVE_PAGE',
+    activePage
+  };
+};
+
+
+
+
 
 
 

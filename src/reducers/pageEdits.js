@@ -1,7 +1,7 @@
 const defaultState = {
   addTransaction: false,
   editTransactionId: '',
-  //editTransaction: false
+  activePage: 'dashboard'
 };
 
 export default  (state = defaultState, action) => {
@@ -16,6 +16,11 @@ export default  (state = defaultState, action) => {
       ...state,
       editTransactionId: action.id
     };
+    case 'ACTIVE_PAGE':
+      return {
+        ...state,
+        activePage: action.activePage
+      };
     default:
       return state;
   }

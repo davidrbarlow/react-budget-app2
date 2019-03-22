@@ -15,10 +15,11 @@ export const startAddTransaction = (transactionData = {}) => {
         description = '', 
         amount = 0, 
         postedAt = 0 ,
+        accountType = 'NA',
         cycle = ''
     } = transactionData;
   
-    const transaction = {description, amount, postedAt, cycle};
+    const transaction = {description, amount, postedAt, accountType, cycle};
 
     //add transaction api
     console.log('start add trans ', `${process.env.REACT_APP_API_URL}/transaction/transaction`);
@@ -45,7 +46,6 @@ export const editTransaction = (id, updates) =>({
 export const startEditTransaction = (id, updates) => {
   return (dispatch,getState) => {
    const token = getState().auth.authToken;
-   console.log(token);
   return  axios.patch(`${process.env.REACT_APP_API_URL}/transaction/edit/${id}`, 
   updates,
   {
