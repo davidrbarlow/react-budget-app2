@@ -33,7 +33,7 @@ export class TransactionItemForm extends React.Component {
         description: this.state.description,
         amount : parseFloat(this.state.amount, 10) * 100,
         postedAt: this.state.postedAt.valueOf(),
-        accountType: (this.props.activePage==='projection')? 'Projection' : '',
+        accountType: (this.props.activePage==='projection')? 'Projection' : 'Manual',
         cycle,
         });
       //this.props.editTransaction()
@@ -123,7 +123,7 @@ export class TransactionItemForm extends React.Component {
             value={this.state.cycle}
             onChange={this.onCycleChange}
           >
-            <option value="Type" disabled>Type</option>
+            <option value="NA" disabled>Type</option>
             <option value="NA"></option>
             <option value="Balance">Balance</option>
             <option value="Bi-weekly">Bi-weekly</option>
