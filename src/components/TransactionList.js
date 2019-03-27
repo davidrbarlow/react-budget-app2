@@ -42,9 +42,11 @@ render(){
         // <TransactionListItem key={transaction._id} {...transaction} handleState={this.handleState}/> 
      }
      else if (this.props.pageEdits.activePage === 'projection'){
+        console.log('$$$$$$$$$$$$$$$$$$projections from props',this.props.projections)
         list = this.props.projections.map((projection) =>  
        <TransactionListItem key={projection._id} {...projection} handleState={this.handleState}/> 
         )
+       
      }
 
     return (
@@ -59,6 +61,7 @@ render(){
         </div>
          <div>
          {list}
+   
          </div>
             
     </div>

@@ -1,19 +1,45 @@
 import moment from 'moment';
+
 //Get visible expenses
 
 
-export default  (transactions, {text, sortBy, startDate, endDate}) => {
+export default  (transactions, filters) => {
+
+  const projectionSeedData = createProjectionSeed(transactions);
+  console.log('createProjectionSeed ', projectionSeedData);
+  const projections = projectTransactions(projectionSeedData);
+  console.log('manual balances ',findSeedBalance(transactions))
+  console.log('projections ', [...transactions,...projections]);
+  return filterProjections([...transactions,...projections],filters);
+
+};
+
+  //find most recent of the 2 - earliest balance or 
+  //latest manually added balance.
+
+  const findSeedBalance = (transactions) => {
+    const manualBalance = transactions.filter((transaction)=>{
+      return (transaction.accountType === 'Balance') ? 1 : 0;
+    });
+    return(manualBalance);
+
+  };
+
+  const addBalances = (transactions) => {
+
+
+  };
+
+
+
 
 
   // returns an array of initial values to project
+  // I'm ordering by description (removing any numbers) then date.  
+  // Grabbing the latest row for a group of descriptions.
     const createProjectionSeed = (transactions) => {
-      // get latest projections.
-      // order projections by date and description(remove all numbers from description).
-      // push the last of of each to array.
      
       return transactions.sort((a,b) => {
-        // const aDescr = a.description.replace(/\d+/g, '');
-        // const bDescr = b.description.replace(/\d+/g, '');
         const aDescr = a.description;
         const bDescr = b.description;
         if (aDescr === bDescr){
@@ -38,8 +64,12 @@ export default  (transactions, {text, sortBy, startDate, endDate}) => {
 
     }
 
+    // takes in a set of transactions and projects forward 2 months
+
+
     const projectTransactions = (transactions) => {
       let projections = [];
+      let _id = 0;
       transactions.sort((a,b)=>{
         return a.postedAt>b.postedAt ? 1 : -1;
       }).forEach((transaction) => {
@@ -49,18 +79,18 @@ export default  (transactions, {text, sortBy, startDate, endDate}) => {
         const balance = transaction.balance;
         const cycle = transaction.cycle;
         const description = transaction.description;
-  
         const postedAtEndDate = moment(transaction.postedAt);
         postedAtEndDate.add(2,'month');
-        console.log('start transaction ',cycle, description);
         switch(cycle){
           case 'Monthly' : 
           { 
             let postedAtMoment =  moment(transaction.postedAt);
             postedAtMoment.add(1,'month');
             while (postedAtMoment <= postedAtEndDate){
+              _id += 1;
               projections.push({
-                postedAtMoment,
+                _id,
+                postedAt: postedAtMoment.unix()*1000,
                 accountType,
                 amount,
                 balance,
@@ -76,9 +106,10 @@ export default  (transactions, {text, sortBy, startDate, endDate}) => {
             let postedAtMoment =  moment(transaction.postedAt);
             postedAtMoment.add(2,'week');
             while (postedAtMoment <= postedAtEndDate){
-              console.log('processing BW - ',cycle,description, postedAtMoment.calendar());
+              _id += 1;
               projections.push({
-                postedAtMoment,
+                _id,
+                postedAt: postedAtMoment.unix()*1000,
                 accountType,
                 amount,
                 balance,
@@ -86,6 +117,7 @@ export default  (transactions, {text, sortBy, startDate, endDate}) => {
                 description
               });
               postedAtMoment.add(2,'week');
+              
             }
            break;
           }
@@ -94,23 +126,23 @@ export default  (transactions, {text, sortBy, startDate, endDate}) => {
           
           }
         }
-  
-       // console.log('**************************',postedAtMoment, accountType);
+       
       });
-
+      return projections
     };
    
 
-    const filterProjections = (transactions) => {
+    //takes transactions and filters and returns filtered array of transacions/projections
+    const filterProjections = (transactions, {text, sortBy, startDate, endDate}) => {
 
       return transactions.filter((transaction)=>{
         const postedAtMoment = moment(transaction.postedAt);
         const startDateMatch = startDate ? startDate.isSameOrBefore(postedAtMoment, 'day'): true;
         const endDateMatch = endDate ? endDate.isSameOrAfter(postedAtMoment, 'day'): true;
         const textMatch = transaction.description.toLowerCase().includes(text.toLowerCase());
-        const projectionNoMatch = transaction.accountType === 'Projection';
+        //const projectionNoMatch = transaction.accountType === 'Projection';
        // console.log('********transaction from selectors', transaction);
-        return startDateMatch && endDateMatch && textMatch && projectionNoMatch;
+        return startDateMatch && endDateMatch && textMatch;// && projectionNoMatch;
 
     }).sort((a,b)=>{
         if (sortBy === 'date'){
@@ -130,8 +162,6 @@ export default  (transactions, {text, sortBy, startDate, endDate}) => {
 
     
 
-    const test = createProjectionSeed(transactions);
-    console.log('createProjectionSeed ', test);
-    return filterProjections(transactions);
+    
+   // return filterProjections(transactions);
   
-};

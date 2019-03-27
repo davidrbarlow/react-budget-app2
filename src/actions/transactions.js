@@ -54,6 +54,7 @@ export const startEditTransaction = (id, updates) => {
     }
   })
   .then(()=>{   
+    console.log('start add transaction ', updates);
     dispatch(editTransaction(id, updates));
     });
   };

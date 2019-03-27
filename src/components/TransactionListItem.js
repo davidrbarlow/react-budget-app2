@@ -15,8 +15,13 @@ class TransactionListItem extends React.Component {
     constructor(props) {
       super(props);
 
+    // const cycle = () => {
+    //   props.balance ? '' : props.cycle;
+    // }  
+
     this.state = {
-        cycle: props.cycle ? props.cycle : '',
+       cycle : props.balance ? '' : props.cycle,
+    //cycle: props.cycle ? props.cycle : '',
         selected : false
     };
 
@@ -57,7 +62,7 @@ class TransactionListItem extends React.Component {
     this.setState(()=>({selected}));
     console.log('ID of selected', this.props._id, selected);
     selected ? this.props.setSelectedTransactionId(this.props._id) :this.props.removeSelectedTrasactionId(this.props._id);
-  }
+  };
 
   render(){
     return(
