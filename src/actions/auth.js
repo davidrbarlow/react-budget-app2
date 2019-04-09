@@ -124,7 +124,6 @@ function setLoginError(loginError) {
 };
 
 export const setAuthToken = (authToken) => {
-  console.log('setAuthToken', authToken);
   return {
     type: SET_AUTH_TOKEN,
     authToken,

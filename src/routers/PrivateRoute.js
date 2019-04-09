@@ -24,7 +24,6 @@ export const PrivateRoute = ({
 
 const mapStateToProps = (state) => {
     const props = { isAuthenticated: !!state.auth.authToken };
-  console.log('%%%%%%%%%%%%%%%%%%%%', props);
   return props;  
 };
 // const mapStateToProps = (state) => ({

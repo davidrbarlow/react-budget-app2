@@ -42,9 +42,9 @@ const handleChange = () => {
    let previousToken = currentToken;
 
    currentToken = select(store.getState());
-   console.log('index handle change called, current token is ', currentToken);
-   console.log('history location pathname', history.location.pathname );
-//   const token = 'test';
+   // console.log('index handle change called, current token is ', currentToken);
+   // console.log('history location pathname', history.location.pathname );
+
    if (previousToken !== currentToken && currentToken){
       store.dispatch(startSetTransactions(currentToken)).then(()=>{
          renderApp();
@@ -54,18 +54,17 @@ const handleChange = () => {
       });
    } else if (!currentToken && (history.location.pathname !== '/signup' && history.location.pathname !== '/')){
       renderApp();
-      console.log('push to home');
       history.push('/');
    }
 };
 
 store.subscribe(()=>{
-   //posibly remove
+   //posibly remove if you want page refresh to log out use
    localStorage.setItem('TOKEN', store.getState().auth.authToken);
-   console.log(handleChange());
+   handleChange();
 });
 
-// possibly remove
+// possibly remove if you want page refresh to log out use
 store.dispatch(startSetTransactions(store.getState().auth.authToken));
 
 

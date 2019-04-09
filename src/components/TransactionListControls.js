@@ -25,9 +25,7 @@ class TransactionListControls  extends React.Component {
   };
 
   handleAddRow = () => {
-    console.log("pressed*************");
     this.props.toggleAddTransaction();
-    
   }
 
   handleDeleteRows = () => {
@@ -41,12 +39,10 @@ class TransactionListControls  extends React.Component {
     
     csvUpload(data, this.props.authToken)
     .then((res)=>{
-      console.log('successfully uploaded ', this.props);
       this.fileInput.value='';
       this.props.startSetTransactions();
     })
     .catch((e)=>{
-      console.log('handleSubmit catch ',e);
       // console.log('handleSubmit catch ',res);
       e ? this.setState({error: 'file failed upload'}) : console.log("upload failed");    
       this.fileInput.value='';  

@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import TransactionListItem from './TransactionListItem';
 import selectTransactions from '../selectors/transactions';
 import selectProjections from '../selectors/projections';
@@ -38,11 +38,8 @@ render(){
          list = this.props.transactions.map((transaction) =>  
         <TransactionListItem key={transaction._id} {...transaction} handleState={this.handleState}/> 
          )
-        //  list = this.props.transactions.map((transaction) =>  
-        // <TransactionListItem key={transaction._id} {...transaction} handleState={this.handleState}/> 
      }
      else if (this.props.pageEdits.activePage === 'projection'){
-        console.log('$$$$$$$$$$$$$$$$$$projections from props',this.props.projections)
         list = this.props.projections.map((projection) =>  
        <TransactionListItem key={projection._id} {...projection} handleState={this.handleState}/> 
         )
@@ -67,18 +64,16 @@ render(){
     </div>
     </div>
 );
-//handleState={ this.handleState }
+
 }
  }
 
 
  const mapDispatchToProps = (dispatch) => ({
     startSetTransactions : (token) => dispatch(startSetTransactions(token)),
-  //  toggleAddTransaction : () => dispatch(toggleAddTransaction())
     })
  
 const mapStateToProps = (state) => {
-  console.log('mapStateToProps state ', state);
     return {
       transactions: selectTransactions(state.transactions, state.filters),
       projections: selectProjections(state.transactions, state.filters),

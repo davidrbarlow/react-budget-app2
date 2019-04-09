@@ -5,9 +5,9 @@ import moment from 'moment';
 import numeral from 'numeral';
 
 import TransactionItemForm from './TransactionItemForm';
-import {editTransactionId} from '../actions/pageEdits';
-import {removeSelectedTransactionId, setSelectedTransactionId} from '../actions/selectedRows';
-import {startEditTransaction, startRemoveTransaction} from '../actions/transactions';
+import { editTransactionId } from '../actions/pageEdits';
+import { removeSelectedTransactionId, setSelectedTransactionId } from '../actions/selectedRows';
+import { startEditTransaction, startRemoveTransaction } from '../actions/transactions';
 //import { stat } from 'fs';
 
  //
@@ -20,9 +20,9 @@ class TransactionListItem extends React.Component {
     // }  
 
     this.state = {
-       cycle : props.balance ? '' : props.cycle,
-    //cycle: props.cycle ? props.cycle : '',
-        selected : false
+      cycle : props.balance ? 'Balance' : props.cycle,
+      //cycle: props.cycle ? props.cycle : '',
+      selected : false
     };
 
   this.handleEditRow = this.handleEditRow.bind(this);  
@@ -91,9 +91,6 @@ class TransactionListItem extends React.Component {
             {numeral(this.props.amount/100).format('$0,0.00')} 
         </div>
     
-        
-      {/*console.log('Translist render props',this.props, this.state)*/}
-      {console.log('test env variable ',process.env.REACT_APP_API_URL)}
         <select className="select select__transaction" value={this.state.cycle} onChange={this.onCycleChange}>
        
         <option value="NA"></option>

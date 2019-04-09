@@ -1,8 +1,26 @@
 import moment from 'moment';
 //Get visible expenses
 
+let adjustedTransactions = [];
 
-export default  (transactions, {text, sortBy, startDate, endDate}) => {
+export default (transactions, filters) => {
+  
+    setCycleBalance(transactions);
+    return filterTransactions(transactions, filters);
+};
+
+const setCycleBalance = (transactions) => {
+    transactions.forEach((transaction)=>{
+        if (transaction.setAsBalance) {
+            transaction.cycle = 'Balance';  
+        }
+        adjustedTransactions.push(transaction);
+      
+    });
+};
+//setCycleBalance();
+
+const filterTransactions =  (transactions, {text, sortBy, startDate, endDate}) => {
     return transactions.filter((transaction)=>{
         const postedAtMoment = moment(transaction.postedAt);
         const startDateMatch = startDate ? startDate.isSameOrBefore(postedAtMoment, 'day'): true;

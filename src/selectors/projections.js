@@ -5,29 +5,58 @@ import moment from 'moment';
 
 export default  (transactions, filters) => {
 
-  const projectionSeedData = createProjectionSeed(transactions);
-  console.log('createProjectionSeed ', projectionSeedData);
-  const projections = projectTransactions(projectionSeedData);
-  console.log('manual balances ',findSeedBalance(transactions))
-  console.log('projections ', [...transactions,...projections]);
-  return filterProjections([...transactions,...projections],filters);
+  const projectionSeedData =  createProjectionSeed(transactions);
+  const projections =  projectTransactions(projectionSeedData)
+  const balanceSeedData =  findBalanceSeed(transactions);
+  const projectionsWithBalances =  createProjectionBalances(projections,balanceSeedData);
+  const filteredProjections =  filterProjections([...projectionsWithBalances,...transactions],filters);
+  //whatch out for the filter on the projection page.
+  return  filteredProjections;
 
 };
 
   //find most recent of the 2 - earliest balance or 
   //latest manually added balance.
 
-  const findSeedBalance = (transactions) => {
+  const findBalanceSeed = (transactions) => {
     const manualBalance = transactions.filter((transaction)=>{
-      return (transaction.accountType === 'Balance') ? 1 : 0;
-    });
-    return(manualBalance);
+      return (transaction.cycle === 'Balance' ? 1 : 0);
+    }).sort((a,b)=>{
+      return a.postedAt>b.postedAt ? 1 : 0;
+    })[0];
+    
+    const importedBalance = transactions.filter((transaction)=>{
+      return (transaction.balance && transaction.cycle !== 'Balance' ? 1 : 0);
+    }).sort((a,b)=>{
+      return a.postedAt<b.postedAt ? 1 : 0;
+    })[0];
+    
+    return(manualBalance ? manualBalance : importedBalance);
 
   };
 
-  const addBalances = (transactions) => {
+  const createProjectionBalances = (transactions, seedBalance) => {
+    let transactionsWithBalance = []
+    const rsum1 = transactions.filter((transaction)=>(
+      transaction.postedAt>seedBalance.postedAt ? 1 : 0
+    )).sort((a,b)=>{
+      return a.postedAt>=b.postedAt ? 1 : -1;
+    });
+
+   // const reduce1 = rsum1.reduce((a,b)=>{
+    rsum1.reduce((a,b)=>{
+      const rsum = a.rsum + b.amount;
+      transactionsWithBalance.push({
+        ...b, rsum
+      });
+      return ({rsum: a.rsum + b.amount});
+    },{rsum: 0});
 
 
+    const projectionsBeforeSeedBalance = transactions.filter((transaction)=>(
+      transaction.postedAt<=seedBalance.postedAt ? 1 : 0
+    ));
+    return([...transactionsWithBalance,...projectionsBeforeSeedBalance]);
   };
 
 
@@ -52,10 +81,9 @@ export default  (transactions, filters) => {
       }).filter((o, i) => {
         if (i){
           if (o.description.replace(/\d+/g, '') !== transactions[i-1].description.replace(/\d+/g, '')){
-            console.log(o.description.replace(/\d+/g, ''), 'does not equal ', transactions[i-1].description.replace(/\d+/g, ''));
+           // console.log(o.description.replace(/\d+/g, ''), 'does not equal ', transactions[i-1].description.replace(/\d+/g, ''));
             return true;
           } 
-            console.log('removing... ', o.description)
             return false;
         }
         return true;
@@ -74,7 +102,7 @@ export default  (transactions, filters) => {
         return a.postedAt>b.postedAt ? 1 : -1;
       }).forEach((transaction) => {
         
-        const accountType = transaction.accountType;
+        const accountType = 'Projected';
         const amount = transaction.amount;
         const balance = transaction.balance;
         const cycle = transaction.cycle;
@@ -163,5 +191,4 @@ export default  (transactions, filters) => {
     
 
     
-   // return filterProjections(transactions);
   

@@ -56,7 +56,6 @@ export class TransactionItemForm extends React.Component {
   onCycleChange = (e) => {
     const cycle = e.target.value;
     this.setState(()=>({cycle}));
-   // console.log('this.state.cycle ', this.state.cycle, e.target, e.target.value);
   }
 
   onDateChange= (postedAt) => {
