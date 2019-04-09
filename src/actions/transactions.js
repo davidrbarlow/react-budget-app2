@@ -22,7 +22,6 @@ export const startAddTransaction = (transactionData = {}) => {
     const transaction = {description, amount, postedAt, accountType, cycle};
 
     //add transaction api
-    console.log('start add trans ', `${process.env.REACT_APP_API_URL}/transaction/transaction`);
     return axios.post(`${process.env.REACT_APP_API_URL}/transaction/transaction`,
       transaction,
       {
@@ -54,7 +53,6 @@ export const startEditTransaction = (id, updates) => {
     }
   })
   .then(()=>{   
-    console.log('start add transaction ', updates);
     dispatch(editTransaction(id, updates));
     });
   };
@@ -66,7 +64,6 @@ export const removeTransaction = (id) => ({
 });
 
 export const startRemoveTransaction = (id) => {
-  console.log('ID', id);
   return (dispatch,getState) => {
     const token = getState().auth.authToken;
     return  axios.delete(`${process.env.REACT_APP_API_URL}/transaction/remove/${id}`,

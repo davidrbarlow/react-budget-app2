@@ -24,6 +24,7 @@
   } 
 }
 
+
 .description-mobile{
   grid-column: 1;
   grid-row: 2/4;
@@ -45,6 +46,7 @@
    @media (min-width: $desktop-breakpoint){
       font-weight: 500;
       margin-right: $s-size;
+      //width: 100px;
 }
 }
 
@@ -59,7 +61,16 @@
     margin-right: $s-size;
     width: 10rem;
   }
-  
+}
+
+.amount__rsum-red{
+  color: red;
+  grid-row:2;
+}
+
+.amount__rsum-green{
+  color: green;
+  grid-row:2;
 }
 
 

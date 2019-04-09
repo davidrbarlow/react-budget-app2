@@ -12,9 +12,7 @@ export default (state = transactionsReducerDefaultState, action)=>{
       return state.filter((transaction)=>{return !action.ids.includes(transaction._id)});
     case 'EDIT_TRANSACTION':
       return state.map((transaction)=>{
-        console.log('$$$$$$$$$$$$$$$$$$$$$reducer', transaction._id, action.id);
         if (transaction._id === action.id){
-          console.log('$$$$$$$$$$$$$$$$$$$$$reducer if', action.updates);
           return {
             ...transaction,
             ...action.updates

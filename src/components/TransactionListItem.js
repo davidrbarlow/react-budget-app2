@@ -15,13 +15,9 @@ class TransactionListItem extends React.Component {
     constructor(props) {
       super(props);
 
-    // const cycle = () => {
-    //   props.balance ? '' : props.cycle;
-    // }  
-
     this.state = {
-      cycle : props.balance ? 'Balance' : props.cycle,
-      //cycle: props.cycle ? props.cycle : '',
+      //cycle : props.balance ? 'Balance' : props.cycle,
+      cycle: props.cycle ? props.cycle : '',
       selected : false
     };
 
@@ -41,7 +37,6 @@ class TransactionListItem extends React.Component {
   }
 
   onCycleChange = (e) => {
-    
     const cycle = e.target.value;
     this.setState(()=>({ cycle }));
     this.props.startEditTransaction(this.props._id, { cycle });
@@ -60,11 +55,22 @@ class TransactionListItem extends React.Component {
   onSelectedChange = (e) => {
     const selected = this.state.selected === true ? false : true;
     this.setState(()=>({selected}));
-    console.log('ID of selected', this.props._id, selected);
     selected ? this.props.setSelectedTransactionId(this.props._id) :this.props.removeSelectedTrasactionId(this.props._id);
   };
 
   render(){
+
+    let rsumClassName;
+
+    if ((this.props.accountType === 'Projected' || this.props.accountType === 'Projection') && this.props.rsum>0) {
+      rsumClassName = 'amount amount__rsum-green';
+    } 
+    else if ((this.props.accountType === 'Projected' || this.props.accountType === 'Projection') && this.props.rsum<0) {
+      rsumClassName = 'amount amount__rsum-red';
+    } else {
+      rsumClassName = 'amount';
+    }
+    
     return(
       
    <div>
@@ -86,26 +92,35 @@ class TransactionListItem extends React.Component {
             {this.props.description}
         </span>
         
-        <div className="description show-for-desktop" >{this.props.description}</div>
-        <div className="amount"> 
-            {numeral(this.props.amount/100).format('$0,0.00')} 
+        <div className="description show-for-desktop">{this.props.description}</div>
+
+        <div className = "amount">
+          {numeral(this.props.amount/100).format('$0,0.00')}
         </div>
-    
-        <select className="select select__transaction" value={this.state.cycle} onChange={this.onCycleChange}>
-       
-        <option value="NA"></option>
-        <option value="Balance">Balance</option>
-        <option value="Bi-weekly">Bi-weekly</option>
-        <option value="Monthly">Monthly</option>
-        </select>
         
+        {this.props.rsum && <div className={rsumClassName}> 
+        {numeral(this.props.rsum/100).format('$0,0.00')}
+        </div>}
+        
+    
+        {this.props.pageEdits.activePage !== 'projection' 
+        && <select className="select select__transaction" value={this.state.cycle} onChange={this.onCycleChange}>
+          <option value="NA"></option>
+          <option value="Balance">Balance</option>
+          <option value="Bi-weekly">Bi-weekly</option>
+          <option value="Monthly">Monthly</option>
+        </select>}
+
+        {console.log('pageEdits ',this.props.pageEdits)}
+        {console.log('accountType ',this.props.rsum)}
         <div className="icons show-for-desktop">
-          <input type="image" id={'editButton'} src={'/images/edit.svg'} 
+        {(this.props.pageEdits.activePage !== 'projection') && <input type="image" id={'editButton'} src={'/images/edit.svg'} 
           onClick={()=>this.handleEditRow(this.props._id)}
-          alt={'Edit'} width={'20'} height={'20'}/>
-          <input type="image" id={'deleteButton'} src={'/images/delete.svg'} 
+          alt={'Edit'} width={'20'} height={'20'}/>}
+    
+          {(this.props.pageEdits.activePage !== 'projection') && <input type="image" id={'deleteButton'} src={'/images/delete.svg'} 
           onClick={()=>this.handleRemoveRow(this.props._id)}
-          alt={'Delete'} width={'20'} height={'20'}/>
+          alt={'Delete'} width={'20'} height={'20'}/>}
         </div>
     </div>
     <div>
