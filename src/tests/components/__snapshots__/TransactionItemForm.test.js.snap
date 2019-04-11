@@ -141,20 +141,31 @@ exports[`should render TransactionForm correctly 1`] = `
       <select
         className="select select__transaction"
         onChange={[Function]}
-        value=" "
+        value="Type"
       >
+        <option
+          disabled={true}
+          value="NA"
+        >
+          Type
+        </option>
         <option
           value="NA"
         />
         <option
-          value="Monthly"
+          value="Balance"
         >
-          Monthly
+          Balance
         </option>
         <option
           value="Bi-weekly"
         >
           Bi-weekly
+        </option>
+        <option
+          value="Monthly"
+        >
+          Monthly
         </option>
       </select>
     </div>
@@ -311,17 +322,28 @@ exports[`should render TransactionForm correctly with transaction data 1`] = `
         onChange={[Function]}
       >
         <option
+          disabled={true}
+          value="NA"
+        >
+          Type
+        </option>
+        <option
           value="NA"
         />
         <option
-          value="Monthly"
+          value="Balance"
         >
-          Monthly
+          Balance
         </option>
         <option
           value="Bi-weekly"
         >
           Bi-weekly
+        </option>
+        <option
+          value="Monthly"
+        >
+          Monthly
         </option>
       </select>
     </div>
@@ -480,20 +502,31 @@ exports[`should render error for invalid form submission 1`] = `
       <select
         className="select select__transaction"
         onChange={[Function]}
-        value=" "
+        value="Type"
       >
+        <option
+          disabled={true}
+          value="NA"
+        >
+          Type
+        </option>
         <option
           value="NA"
         />
         <option
-          value="Monthly"
+          value="Balance"
         >
-          Monthly
+          Balance
         </option>
         <option
           value="Bi-weekly"
         >
           Bi-weekly
+        </option>
+        <option
+          value="Monthly"
+        >
+          Monthly
         </option>
       </select>
     </div>

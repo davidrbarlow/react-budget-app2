@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TransactionItemForm from '../../components/TransactionItemForm';
+import { TransactionItemForm } from '../../components/TransactionItemForm';
 import transactions from '../fixtures/transactions';
 import toJSON from 'enzyme-to-json';
 import moment from 'moment';
@@ -40,6 +40,7 @@ test('should set decription on input change', () => {
 test('should set amount if valid input', () => {
   const value = '23.50';
   const wrapper = shallow(<TransactionItemForm />);
+  console.log(wrapper);
   wrapper.find('input').at(2).simulate('change', {
       target: {value}
   })
@@ -72,6 +73,7 @@ test('should call onSubmit prop for valid form submission', () => {
   });
   expect(wrapper.state('error')).toBe('');
   expect(onSubmitSpy).toHaveBeenLastCalledWith({
+      accountType: 'Manual',
       description: transactions[0].description,
       amount : transactions[0].amount,
       postedAt : transactions[0].postedAt,

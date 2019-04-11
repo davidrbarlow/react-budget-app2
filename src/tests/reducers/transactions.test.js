@@ -3,6 +3,7 @@ import transactionsReducer from '../../reducers/transactions';
 
 
 test('should set transactions', () => {
+  
   const action = {
     type: 'SET_TRANSACTIONS',
     transactions: [transactions[1]]
@@ -68,7 +69,6 @@ test('should edit transaction', () =>{
     id: transactions[1]._id,
     updates
   }
-
   const state = transactionsReducer(transactions, action);
-  expect(state[1].description).toEqual(transactions[1].description);
+  expect(state[1].description).toEqual(updates.description);
 });
